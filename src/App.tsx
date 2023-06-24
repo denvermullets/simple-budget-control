@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
+import NavBar from "./components/NavBar";
+import InputSimple from "./components/NavBar/InputSimple";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Box minH="100vh">
+      <NavBar />
+      <Grid templateColumns="repeat(5, 1fr)" gap={6}>
+        <GridItem w="100%" bg="blue.500">
+          <Flex gap={6}>
+            <Text>boxy</Text>
+            <InputSimple initialValue="$23.04" />
+          </Flex>
+          <Flex gap={6}>
+            <Text>boxy</Text>
+            <InputSimple initialValue="$23.04" />
+          </Flex>
+          <Flex gap={6}>
+            <Text>boxy</Text>
+            <InputSimple initialValue="$23.04" />
+          </Flex>
+          <Flex gap={6}>
+            <Text>boxy</Text>
+            <InputSimple initialValue="$23.04" />
+          </Flex>
+          <Flex gap={6}>
+            <Text>boxy</Text>
+            <InputSimple initialValue="$23.04" />
+          </Flex>
+        </GridItem>
+        <GridItem w="100%" bg="blue.500" />
+        <GridItem w="100%" bg="blue.500" />
+        <GridItem w="100%" bg="blue.500" />
+        <GridItem w="100%" bg="blue.500" />
+      </Grid>
+      <Box padding={8}>
+        <Text>Some other information</Text>
+      </Box>
+    </Box>
+  );
 }
 
-export default App
+export default App;
