@@ -9,7 +9,7 @@ export const globalStyles = {
     global: () => ({
       body: {
         overflowX: "hidden",
-        bg: "gray.200",
+        bg: "gray.100",
         // bg: mode("darkMode.50", "darkMode.500")(props),
         letterSpacing: "-0.5px",
       },
