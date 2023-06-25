@@ -3,12 +3,18 @@ import { ChakraProvider } from "@chakra-ui/react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import customTheme from "./theme";
+import { CurrentUserProvider } from "./providers/UserContext.tsx";
+import { INITIAL_STATE } from "./reducers/simpleBudgetReducer.tsx";
+
+const storedData = localStorage.getItem("simpleBudget");
+const initialData = storedData ? JSON.parse(storedData) : INITIAL_STATE;
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider theme={customTheme}>
-      <App />
+      <CurrentUserProvider initialData={initialData}>
+        <App />
+      </CurrentUserProvider>
     </ChakraProvider>
   </React.StrictMode>
 );
-
