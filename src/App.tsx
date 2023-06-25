@@ -35,16 +35,50 @@ function App() {
                 })
               }
             >
-              boxy 1
+              add loan
             </Text>
             <InputSimple initialValue="$23.04" />
           </Flex>
           <Flex gap={6}>
-            <Text>boxy</Text>
+            <Text
+              onClick={() =>
+                dispatch({
+                  type: "EDIT_LOAN",
+                  payload: {
+                    source: "Bank of America",
+                    balance: 4.97,
+                    originalAmount: 5.45,
+                    estimatedPayments: 1,
+                    dueDate: 2,
+                    endDate: "8/19/24",
+                    interest: 0.74,
+                  },
+                })
+              }
+            >
+              edit loan
+            </Text>
             <InputSimple initialValue="$23.04" />
           </Flex>
           <Flex gap={6}>
-            <Text>boxy</Text>
+            <Text
+              onClick={() =>
+                dispatch({
+                  type: "DELETE_LOAN",
+                  payload: {
+                    source: "Bank of America",
+                    balance: 4.97,
+                    originalAmount: 5.45,
+                    estimatedPayments: 1,
+                    dueDate: 2,
+                    endDate: "8/19/24",
+                    interest: 0.74,
+                  },
+                })
+              }
+            >
+              delete loan
+            </Text>
             <InputSimple initialValue="$23.04" />
           </Flex>
           <Flex gap={6}>

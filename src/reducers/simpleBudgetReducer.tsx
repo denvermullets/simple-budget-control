@@ -1,4 +1,5 @@
 import { CreditCard, Loan, LocalStorage, MonthlyRecurring } from "../models/localStorage.model";
+import { editCreditCards, editLoan, editRecurring, setLocalStorage } from "./budgetHelpers";
 
 type ModifyCredit = { type: "ADD_CREDIT_CARD" | "EDIT_CREDIT_CARD"; payload: CreditCard };
 type ModifyLoan = { type: "ADD_LOAN" | "EDIT_LOAN"; payload: Loan };
@@ -45,35 +46,68 @@ export const INITIAL_STATE: LocalStorage = {
   ],
 };
 
-// will need to make sure we update localStorage on each action
-// localStorage.setItem("simpleBudget", JSON.stringify(localBudgetData));
 export const simpleBudgetReducer = (state: LocalStorage, action: Actions) => {
   switch (action.type) {
     case "ADD_LOAN":
+      setLocalStorage({ ...state, loans: [...state.loans, action.payload] });
       return {
         ...state,
         loans: [...state.loans, action.payload],
       };
+    case "EDIT_LOAN":
+      setLocalStorage({ ...state, loans: editLoan(state, action.payload) });
+      return {
+        ...state,
+        loans: editLoan(state, action.payload),
+      };
+    case "DELETE_LOAN":
+      setLocalStorage({
+        ...state,
+        loans: state.loans.filter((loan) => loan.source !== action.payload.source),
+      });
+      return {
+        ...state,
+        loans: state.loans.filter((loan) => loan.source !== action.payload.source),
+      };
+    case "ADD_RECURRING":
+      setLocalStorage({ ...state, monthlyRecurring: [...state.monthlyRecurring, action.payload] });
+      return {
+        ...state,
+        monthlyRecurring: [...state.monthlyRecurring, action.payload],
+      };
+    case "EDIT_RECURRING":
+      setLocalStorage({ ...state, monthlyRecurring: editRecurring(state, action.payload) });
+      return {
+        ...state,
+        monthlyRecurring: editRecurring(state, action.payload),
+      };
+    case "DELETE_RECURRING":
+      setLocalStorage({
+        ...state,
+        monthlyRecurring: state.monthlyRecurring.filter(
+          (recurring) => recurring.source !== action.payload.source
+        ),
+      });
+      return {
+        ...state,
+        monthlyRecurring: state.monthlyRecurring.filter(
+          (recurring) => recurring.source !== action.payload.source
+        ),
+      };
+    case "ADD_CREDIT_CARD":
+      setLocalStorage({ ...state, creditCards: [...state.creditCards, action.payload] });
+      return {
+        ...state,
+        creditCards: [...state.creditCards, action.payload],
+      };
+    case "EDIT_CREDIT_CARD":
+      setLocalStorage({ ...state, creditCards: editCreditCards(state, action.payload) });
+      return {
+        ...state,
+        creditCards: editCreditCards(state, action.payload),
+      };
     case "UPDATE_BUDGET_DATA":
       return state;
-
-    // case "ADD_TAG":
-    //     return {
-    //       ...state,
-    //       tags: [...state.tags, action.payload],
-    //     };
-    //   case "REMOVE_TAG":
-    //     return {
-    //       ...state,
-    //       tags: state.tags.filter((tag) => tag !== action.payload),
-    //     };
-    //   case "INCREASE":
-    //     return {
-    //       ...state,
-    //       quantity: state.quantity + 1,
-    //     };
-    //   case "DECREASE":
-    //     return { ...state, quantity: state.quantity - 1 };
     default:
       return state;
   }
