@@ -23,7 +23,7 @@ export const editLoan = (state: LocalStorage, newData: Loan) => {
 
 export const editRecurring = (state: LocalStorage, newData: MonthlyRecurring) => {
   const recurringIndex = state.monthlyRecurring.findIndex(
-    (recurring) => recurring.source === newData.source
+    (recurring) => recurring.id === newData.id
   );
 
   if (recurringIndex === -1) {
