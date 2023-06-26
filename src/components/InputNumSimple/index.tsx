@@ -1,14 +1,14 @@
 import { NumberInput, NumberInputField, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 
-type InputSimpleProps = {
+type InputNumSimpleProps = {
   initialValue: string;
 };
 
 const format = (val: string) => `$` + val;
 const parse = (val: string) => val.replace(/^\$/, "");
 
-const InputSimple: React.FC<InputSimpleProps> = ({ initialValue }) => {
+const InputNumSimple: React.FC<InputNumSimpleProps> = ({ initialValue }) => {
   const [isEditable, setIsEditable] = useState<boolean>(false);
   const [value, setValue] = useState<string>(parse(initialValue));
 
@@ -26,4 +26,4 @@ const InputSimple: React.FC<InputSimpleProps> = ({ initialValue }) => {
   );
 };
 
-export default InputSimple;
+export default InputNumSimple;
