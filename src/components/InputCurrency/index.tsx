@@ -9,16 +9,6 @@ type InputCurrencyProps = {
   actionType: "EDIT_RECURRING" | "EDIT_CREDIT_CARD" | "EDIT_LOAN";
 };
 
-//  id: string;
-//     source: string;
-//     balance: number;
-//     originalAmount: number;
-//     remainingPayments?: number | undefined;
-//     estimatedPayments: number;
-//     dueDate: number;
-//     endDate: string;
-//     interest?: number | undefined;
-
 const format = (val: string) => `$` + val;
 const parse = (val: string) => val.replace(/^\$/, "");
 
