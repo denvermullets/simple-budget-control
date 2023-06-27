@@ -1,19 +1,25 @@
 import { CreditCard, Loan, LocalStorage, MonthlyRecurring } from "../models/localStorage.model";
 import { editCreditCards, editLoan, editRecurring, setLocalStorage } from "./budgetHelpers";
 
-type ModifyCredit = { type: "ADD_CREDIT_CARD" | "EDIT_CREDIT_CARD"; payload: CreditCard };
-type ModifyLoan = { type: "ADD_LOAN" | "EDIT_LOAN"; payload: Loan };
-type ModifyRecurring = { type: "ADD_RECURRING" | "EDIT_RECURRING"; payload: MonthlyRecurring };
+type AddCredit = { type: "ADD_CREDIT_CARD"; payload: CreditCard };
+type ModifyCredit = { type: "EDIT_CREDIT_CARD"; payload: Partial<CreditCard> };
+type AddLoan = { type: "ADD_LOAN"; payload: Loan };
+type ModifyLoan = { type: "EDIT_LOAN"; payload: Partial<Loan> };
+type AddRecurring = { type: "ADD_RECURRING"; payload: MonthlyRecurring };
+type ModifyRecurring = { type: "EDIT_RECURRING"; payload: Partial<MonthlyRecurring> };
 type DeleteCreditCard = { type: "DELETE_CREDIT_CARD"; payload: CreditCard };
 type DeleteLoan = { type: "DELETE_LOAN"; payload: Loan };
 type DeleteRecurring = { type: "DELETE_RECURRING"; payload: MonthlyRecurring };
 type UpdateBugetData = { type: "UPDATE_BUDGET_DATA"; payload: LocalStorage };
 
 export type Actions =
+  | AddCredit
   | ModifyCredit
   | DeleteCreditCard
+  | AddLoan
   | ModifyLoan
   | DeleteLoan
+  | AddRecurring
   | ModifyRecurring
   | DeleteRecurring
   | UpdateBugetData;

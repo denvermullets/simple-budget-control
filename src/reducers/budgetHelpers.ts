@@ -8,20 +8,20 @@ export const setLocalStorage = (data: LocalStorage) => {
   localStorage.setItem("simpleBudget", JSON.stringify(data));
 };
 
-export const editLoan = (state: LocalStorage, newData: Loan) => {
-  const loanIndex = state.loans.findIndex((loan) => loan.source === newData.source);
+export const editLoan = (state: LocalStorage, newData: Partial<Loan>) => {
+  const loanIndex = state.loans.findIndex((loan) => loan.id === newData.id);
 
   if (loanIndex === -1) {
     return state.loans;
   }
 
   const newLoans = [...state.loans];
-  newLoans[loanIndex] = newData;
+  newLoans[loanIndex] = { ...newLoans[loanIndex], ...newData };
 
   return newLoans;
 };
 
-export const editRecurring = (state: LocalStorage, newData: MonthlyRecurring) => {
+export const editRecurring = (state: LocalStorage, newData: Partial<MonthlyRecurring>) => {
   const recurringIndex = state.monthlyRecurring.findIndex(
     (recurring) => recurring.id === newData.id
   );
@@ -31,20 +31,20 @@ export const editRecurring = (state: LocalStorage, newData: MonthlyRecurring) =>
   }
 
   const newRecurring = [...state.monthlyRecurring];
-  newRecurring[recurringIndex] = newData;
+  newRecurring[recurringIndex] = { ...newRecurring[recurringIndex], ...newData };
 
   return newRecurring;
 };
 
-export const editCreditCards = (state: LocalStorage, newData: CreditCard) => {
-  const creditIndex = state.creditCards.findIndex((credit) => credit.source === newData.source);
+export const editCreditCards = (state: LocalStorage, newData: Partial<CreditCard>) => {
+  const creditIndex = state.creditCards.findIndex((credit) => credit.id === newData.id);
 
   if (creditIndex === -1) {
     return state.creditCards;
   }
 
-  const newcredit = [...state.creditCards];
-  newcredit[creditIndex] = newData;
+  const newCredit = [...state.creditCards];
+  newCredit[creditIndex] = { ...newCredit[creditIndex], ...newData };
 
-  return newcredit;
+  return newCredit;
 };
