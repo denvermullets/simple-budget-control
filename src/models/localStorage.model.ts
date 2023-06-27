@@ -32,6 +32,7 @@ export type Loan = {
   source: string;
   balance: number;
   originalAmount: number;
+  minimumPayment: number;
   remainingPayments?: number;
   estimatedPayments: number;
   dueDate: number;
@@ -41,10 +42,10 @@ export type Loan = {
 };
 
 export const INITIAL_STATE: LocalStorage = {
-  monthlyRecurring: [{ id: "monthlyRecurring_00001", source: "Coffee", dueDate: 14, amount: 60.0 }],
+  monthlyRecurring: [{ id: new Date().toString(), source: "Coffee", dueDate: 14, amount: 60.0 }],
   creditCards: [
     {
-      id: "creditCard_00001",
+      id: new Date().toString(),
       source: "Credit Card 1",
       balance: 743.18,
       limit: 3500,
@@ -58,9 +59,10 @@ export const INITIAL_STATE: LocalStorage = {
   ],
   loans: [
     {
-      id: "loan_00001",
+      id: new Date().toString(),
       source: "Bank of America",
       balance: 446.97,
+      minimumPayment: 134.73,
       originalAmount: 1195.45,
       estimatedPayments: 9,
       dueDate: 20,

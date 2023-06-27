@@ -3,6 +3,8 @@ import NavBar from "./components/NavBar";
 import { useContext } from "react";
 import { CurrentUserContext, UserContext } from "./providers/UserContext";
 import RowRecurring from "./components/RowRecurring";
+import RowCreditCard from "./components/RowCreditCard";
+import RowLoan from "./components/RowLoan";
 
 function App() {
   const { localBudgetData, dispatch } = useContext<CurrentUserContext>(UserContext);
@@ -16,7 +18,7 @@ function App() {
   return (
     <Box minH="100vh">
       <NavBar />
-      <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+      <Grid templateColumns="repeat(2, 1fr)" gap={6}>
         <GridItem w="100%" bg="blue.500">
           {localBudgetData.monthlyRecurring.map((monthly) => (
             <RowRecurring
@@ -27,66 +29,12 @@ function App() {
               source={monthly.source}
             />
           ))}
-          {/* <Flex gap={6}>
-            <Text>add loan</Text>
-            <InputSimple initialValue="$23.04" />
-          </Flex>
-          <Flex gap={6}>
-            <Text
-              onClick={() =>
-                dispatch({
-                  type: "EDIT_LOAN",
-                  payload: {
-                    source: "Bank of America",
-                    balance: 4.97,
-                    originalAmount: 5.45,
-                    estimatedPayments: 1,
-                    dueDate: 2,
-                    endDate: "8/19/24",
-                    interest: 0.74,
-                  },
-                })
-              }
-            >
-              edit loan
-            </Text>
-            <InputSimple initialValue="$23.04" />
-          </Flex>
-          <Flex gap={6}>
-            <Text
-              onClick={() =>
-                dispatch({
-                  type: "DELETE_LOAN",
-                  payload: {
-                    source: "Bank of America",
-                    balance: 4.97,
-                    originalAmount: 5.45,
-                    estimatedPayments: 1,
-                    dueDate: 2,
-                    endDate: "8/19/24",
-                    interest: 0.74,
-                  },
-                })
-              }
-            >
-              delete loan
-            </Text>
-            <InputSimple initialValue="$23.04" />
-          </Flex>
-          <Flex gap={6}>
-            <Text>boxy</Text>
-            <InputSimple initialValue="$23.04" />
-          </Flex>
-          <Flex gap={6}>
-            <Text>boxy</Text>
-            <InputSimple initialValue="$23.04" />
-          </Flex> */}
           <Button
             onClick={() =>
               dispatch({
                 type: "ADD_RECURRING",
                 payload: {
-                  id: "monthlyRecurring_00002",
+                  id: new Date().toString(),
                   source: "Netflix",
                   dueDate: 23,
                   amount: 19.99,
@@ -97,10 +45,23 @@ function App() {
             +
           </Button>
         </GridItem>
-        <GridItem w="100%" bg="blue.500" />
-        <GridItem w="100%" bg="blue.500" />
-        <GridItem w="100%" bg="blue.500" />
-        <GridItem w="100%" bg="blue.500" />
+        <GridItem w="100%" bg="blue.500">
+          {localBudgetData.creditCards.map((creditCard) => (
+            <RowCreditCard
+              creditCard={creditCard}
+              actionType="EDIT_CREDIT_CARD"
+              key={creditCard.id}
+            />
+          ))}
+        </GridItem>
+      </Grid>
+      <br />
+      <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+        <GridItem w="100%" bg="blue.500">
+          {localBudgetData.loans.map((loan) => (
+            <RowLoan loan={loan} actionType="EDIT_LOAN" key={loan.id} />
+          ))}
+        </GridItem>
       </Grid>
       <Box padding={8}>
         <Text>Some other information</Text>
