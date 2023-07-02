@@ -1,18 +1,30 @@
-import { Box, Heading, Progress, Stack, Text } from "@chakra-ui/react";
+import { Box, Progress, Stack, Text } from "@chakra-ui/react";
+import InputCurrency from "../InputCurrency";
 
 type BalanceProps = {
+  id: string;
   limit: number;
   balance: number;
+  actionType: "EDIT_CREDIT_CARD";
 };
 
-const Balance: React.FC<BalanceProps> = ({ limit, balance }) => {
+const Balance: React.FC<BalanceProps> = ({ limit, balance, id, actionType }) => {
   return (
     <Box width="100%">
       <Stack direction="row" align="baseline">
-        <Heading size={{ base: "sm", md: "md" }}>{balance}</Heading>
-        <Text fontWeight="semibold" color="fg.muted">
-          / {limit}
-        </Text>
+        <InputCurrency
+          initialValue={balance.toString()}
+          id={id}
+          columnType="balance"
+          actionType={actionType}
+        />
+        <Text> / </Text>
+        <InputCurrency
+          initialValue={limit.toString()}
+          id={id}
+          columnType="limit"
+          actionType={actionType}
+        />
       </Stack>
       <Progress
         marginTop={2}
