@@ -1,20 +1,29 @@
-import { Input, Text } from "@chakra-ui/react";
+import { NumberInput, NumberInputField, Text } from "@chakra-ui/react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 
-type InputTextProps = {
+type InputBalanceProps = {
   initialValue: string;
   id: string;
-  columnType: "endDate" | "source";
+  limit: number;
+  columnType: "balance" | "limit" | "availableBalance" | "minimumPayment" | "originalAmount";
   actionType: "EDIT_RECURRING" | "EDIT_CREDIT_CARD" | "EDIT_LOAN";
 };
 
-const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType }) => {
+const format = (val: string) => `$` + val;
+const parse = (val: string) => val.replace(/^\$/, "");
+
+const InputBalance: React.FC<InputBalanceProps> = ({
+  initialValue,
+  id,
+  columnType,
+  actionType,
+}) => {
   const timeout = useRef<null | ReturnType<typeof setTimeout>>();
   const { dispatch } = useContext<CurrentUserContext>(UserContext);
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
   const [isEditable, setIsEditable] = useState<boolean>(false);
-  const [value, setValue] = useState<string>(initialValue);
+  const [value, setValue] = useState<string>(parse(initialValue));
 
   useEffect(() => {
     if (!dataLoaded) {
@@ -33,24 +42,24 @@ const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType }) =
         type: actionType,
         payload: {
           id,
-          source: value,
+          [columnType]: value,
         },
       });
     }, 500);
-  }, [dispatch, id, dataLoaded, value, initialValue, actionType]);
+  }, [dispatch, id, dataLoaded, value, initialValue, columnType, actionType]);
 
   return isEditable ? (
-    <Input
-      width="100%"
-      size="sm"
-      onChange={(event) => setValue(event.target.value)}
-      value={value}
+    <NumberInput
+      onChange={(valueNumber: string) => setValue(parse(valueNumber))}
+      value={format(value)}
       onBlur={() => setIsEditable(false)}
       autoFocus
-    />
+    >
+      <NumberInputField />
+    </NumberInput>
   ) : (
-    <Text onClick={() => setIsEditable(true)}>{value}</Text>
+    <Text onClick={() => setIsEditable(true)}>{format(value)}</Text>
   );
 };
 
-export default InputText;
+export default InputBalance;
