@@ -47,7 +47,7 @@ const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
       <Td>
         <Flex minHeight="50px" align="center" minWidth="20px">
           <InputCurrency
-            initialValue={minimumPayment.toString()}
+            initialValue={minimumPayment}
             columnType="originalAmount"
             {...additionalProps}
           />

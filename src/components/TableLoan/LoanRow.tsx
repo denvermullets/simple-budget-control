@@ -31,15 +31,11 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
         <InputText initialValue={source} {...additionalProps} columnType="source" />
       </Td>
       <Td>
-        <InputCurrency
-          initialValue={balance.toString()}
-          columnType="balance"
-          {...additionalProps}
-        />
+        <InputCurrency initialValue={balance} columnType="balance" {...additionalProps} />
       </Td>
       <Td>
         <InputCurrency
-          initialValue={originalAmount.toString()}
+          initialValue={originalAmount}
           columnType="originalAmount"
           {...additionalProps}
         />
@@ -53,7 +49,7 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
       </Td>
       <Td>
         <InputCurrency
-          initialValue={minimumPayment.toString()}
+          initialValue={minimumPayment}
           columnType="minimumPayment"
           {...additionalProps}
         />

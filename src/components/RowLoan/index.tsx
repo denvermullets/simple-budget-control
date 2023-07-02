@@ -29,9 +29,9 @@ const RowLoan: React.FC<RowLoanProps> = ({ loan, actionType }) => {
   return (
     <Flex gap={6}>
       <InputText initialValue={source} {...additionalProps} columnType="source" />
-      <InputCurrency initialValue={balance.toString()} columnType="balance" {...additionalProps} />
+      <InputCurrency initialValue={balance} columnType="balance" {...additionalProps} />
       <InputCurrency
-        initialValue={originalAmount.toString()}
+        initialValue={originalAmount}
         columnType="originalAmount"
         {...additionalProps}
       />
@@ -41,7 +41,7 @@ const RowLoan: React.FC<RowLoanProps> = ({ loan, actionType }) => {
         columnType="source"
       />
       <InputCurrency
-        initialValue={minimumPayment.toString()}
+        initialValue={minimumPayment}
         columnType="minimumPayment"
         {...additionalProps}
       />

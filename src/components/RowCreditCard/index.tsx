@@ -27,10 +27,10 @@ const RowCreditCard: React.FC<RowCreditCardProps> = ({ creditCard, actionType })
   return (
     <Flex gap={6}>
       <InputText initialValue={source} {...additionalProps} columnType="source" />
-      <InputCurrency initialValue={balance.toString()} columnType="balance" {...additionalProps} />
-      <InputCurrency initialValue={limit.toString()} columnType="limit" {...additionalProps} />
+      <InputCurrency initialValue={balance} columnType="balance" {...additionalProps} />
+      <InputCurrency initialValue={limit} columnType="limit" {...additionalProps} />
       <InputCurrency
-        initialValue={availableBalance.toString()}
+        initialValue={availableBalance}
         columnType="availableBalance"
         {...additionalProps}
       />
@@ -42,7 +42,7 @@ const RowCreditCard: React.FC<RowCreditCardProps> = ({ creditCard, actionType })
       <InputText initialValue={timeToPayOff.toString()} {...additionalProps} columnType="source" />
       <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="source" />
       <InputCurrency
-        initialValue={minimumPayment.toString()}
+        initialValue={minimumPayment}
         columnType="minimumPayment"
         {...additionalProps}
       />

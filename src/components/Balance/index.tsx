@@ -12,14 +12,14 @@ const Balance: React.FC<BalanceProps> = ({ limit, balance, id }) => {
     <Box width="100%">
       <Stack direction="row" align="baseline">
         <InputCurrency
-          initialValue={balance.toString()}
+          initialValue={balance}
           id={id}
           columnType="balance"
           actionType="EDIT_CREDIT_CARD"
         />
         <Text> / </Text>
         <InputCurrency
-          initialValue={limit.toString()}
+          initialValue={limit}
           id={id}
           columnType="limit"
           actionType="EDIT_CREDIT_CARD"

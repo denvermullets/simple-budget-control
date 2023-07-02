@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 
 type InputCurrencyProps = {
-  initialValue: string;
+  initialValue: number;
   id: string;
   columnType: "balance" | "limit" | "availableBalance" | "minimumPayment" | "originalAmount";
   actionType: "EDIT_RECURRING" | "EDIT_CREDIT_CARD" | "EDIT_LOAN";
@@ -22,7 +22,7 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
   const { dispatch } = useContext<CurrentUserContext>(UserContext);
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
   const [isEditable, setIsEditable] = useState<boolean>(false);
-  const [value, setValue] = useState<string>(parse(initialValue));
+  const [value, setValue] = useState<number>(initialValue);
 
   useEffect(() => {
     if (!dataLoaded) {
@@ -49,15 +49,15 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
 
   return isEditable ? (
     <NumberInput
-      onChange={(valueNumber: string) => setValue(parse(valueNumber))}
-      value={format(value)}
+      onChange={(valueNumber: string) => setValue(Number(parse(valueNumber)))}
+      value={format(value.toString())}
       onBlur={() => setIsEditable(false)}
       autoFocus
     >
       <NumberInputField />
     </NumberInput>
   ) : (
-    <Text onClick={() => setIsEditable(true)}>{format(value)}</Text>
+    <Text onClick={() => setIsEditable(true)}>{format(value.toString())}</Text>
   );
 };
 
