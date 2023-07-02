@@ -24,7 +24,7 @@ export type CreditCard = {
   timeToPayOff: number;
   dueDate: number;
   minimumPayment: number;
-  interest?: number;
+  interest: number;
 };
 
 export type Loan = {
@@ -33,12 +33,12 @@ export type Loan = {
   balance: number;
   originalAmount: number;
   minimumPayment: number;
-  remainingPayments?: number;
+  remainingPayments: number;
   estimatedPayments: number;
   dueDate: number;
   // putting as string for now but later i can implement a datepicker and use Date
   endDate: string;
-  interest?: number;
+  interest: number;
 };
 
 export const INITIAL_STATE: LocalStorage = {
@@ -56,6 +56,126 @@ export const INITIAL_STATE: LocalStorage = {
       minimumPayment: 35,
       interest: 21.49,
     },
+    {
+      id: new Date().toString() + 1,
+      source: "Credit Card 2",
+      balance: 743.18,
+      limit: 3500,
+      availableBalance: 2756.82,
+      utilization: 21.23,
+      timeToPayOff: 22,
+      dueDate: 12,
+      minimumPayment: 35,
+      interest: 21.49,
+    },
+    {
+      id: new Date().toString() + 2,
+      source: "Credit Card 2",
+      balance: 1000.18,
+      limit: 1100.0,
+      availableBalance: 2756.82,
+      utilization: 21.23,
+      timeToPayOff: 22,
+      dueDate: 12,
+      minimumPayment: 35,
+      interest: 21.49,
+    },
+    {
+      id: new Date().toString() + 1,
+      source: "Credit Card 2",
+      balance: 743.18,
+      limit: 3500,
+      availableBalance: 2756.82,
+      utilization: 21.23,
+      timeToPayOff: 22,
+      dueDate: 12,
+      minimumPayment: 35,
+      interest: 21.49,
+    },
+    {
+      id: new Date().toString() + 1,
+      source: "Credit Card 2",
+      balance: 743.18,
+      limit: 3500,
+      availableBalance: 2756.82,
+      utilization: 21.23,
+      timeToPayOff: 22,
+      dueDate: 12,
+      minimumPayment: 35,
+      interest: 21.49,
+    },
+    {
+      id: new Date().toString() + 1,
+      source: "Credit Card 2",
+      balance: 743.18,
+      limit: 3500,
+      availableBalance: 2756.82,
+      utilization: 21.23,
+      timeToPayOff: 22,
+      dueDate: 12,
+      minimumPayment: 35,
+      interest: 21.49,
+    },
+    {
+      id: new Date().toString() + 1,
+      source: "Credit Card 2",
+      balance: 743.18,
+      limit: 3500,
+      availableBalance: 2756.82,
+      utilization: 21.23,
+      timeToPayOff: 22,
+      dueDate: 12,
+      minimumPayment: 35,
+      interest: 21.49,
+    },
+    {
+      id: new Date().toString() + 1,
+      source: "Credit Card 2",
+      balance: 743.18,
+      limit: 3500,
+      availableBalance: 2756.82,
+      utilization: 21.23,
+      timeToPayOff: 22,
+      dueDate: 12,
+      minimumPayment: 35,
+      interest: 21.49,
+    },
+    {
+      id: new Date().toString() + 1,
+      source: "Credit Card 2",
+      balance: 743.18,
+      limit: 3500,
+      availableBalance: 2756.82,
+      utilization: 21.23,
+      timeToPayOff: 22,
+      dueDate: 12,
+      minimumPayment: 35,
+      interest: 21.49,
+    },
+    {
+      id: new Date().toString() + 1,
+      source: "Credit Card 2",
+      balance: 743.18,
+      limit: 3500,
+      availableBalance: 2756.82,
+      utilization: 21.23,
+      timeToPayOff: 22,
+      dueDate: 12,
+      minimumPayment: 35,
+      interest: 21.49,
+    },
+    {
+      id: new Date().toString() + 1,
+      source: "Credit Card 2",
+      balance: 743.18,
+      limit: 3500,
+      availableBalance: 2756.82,
+      utilization: 21.23,
+      timeToPayOff: 22,
+      dueDate: 12,
+      minimumPayment: 35,
+      interest: 21.49,
+    },
   ],
   loans: [
     {
@@ -63,11 +183,24 @@ export const INITIAL_STATE: LocalStorage = {
       source: "Bank of America",
       balance: 446.97,
       minimumPayment: 134.73,
+      remainingPayments: 13,
       originalAmount: 1195.45,
       estimatedPayments: 9,
       dueDate: 20,
       endDate: "8/20/24",
       interest: 15.74,
+    },
+    {
+      id: new Date().toString() + 1,
+      source: "Chase",
+      balance: 3245.12,
+      minimumPayment: 89.15,
+      remainingPayments: 8,
+      originalAmount: 6000.0,
+      estimatedPayments: 14,
+      dueDate: 15,
+      endDate: "8/20/24",
+      interest: 21.24,
     },
   ],
 };

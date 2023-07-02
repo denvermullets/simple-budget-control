@@ -1,6 +1,7 @@
 import { extendTheme, theme as base } from "@chakra-ui/react";
 import { globalStyles } from "./styles";
-import { momentText } from "./components/text";
+import { simpleText } from "./components/text";
+import { simpleTable } from "./components/table";
 
 const customTheme = extendTheme({
   fonts: {
@@ -9,7 +10,10 @@ const customTheme = extendTheme({
   },
   components: {
     Text: {
-      ...momentText,
+      ...simpleText,
+    },
+    Table: {
+      ...simpleTable,
     },
   },
   ...globalStyles,
