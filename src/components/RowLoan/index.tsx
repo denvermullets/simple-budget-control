@@ -16,7 +16,6 @@ const RowLoan: React.FC<RowLoanProps> = ({ loan, actionType }) => {
     balance,
     originalAmount,
     remainingPayments,
-    estimatedPayments,
     dueDate,
     endDate,
     interest,
@@ -34,11 +33,6 @@ const RowLoan: React.FC<RowLoanProps> = ({ loan, actionType }) => {
         initialValue={originalAmount.toString()}
         columnType="originalAmount"
         {...additionalProps}
-      />
-      <InputText
-        initialValue={estimatedPayments.toString()}
-        {...additionalProps}
-        columnType="source"
       />
       <InputCurrency
         initialValue={minimumPayment.toString()}

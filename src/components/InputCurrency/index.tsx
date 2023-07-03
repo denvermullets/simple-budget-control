@@ -1,6 +1,7 @@
 import { NumberInput, NumberInputField, Text } from "@chakra-ui/react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
+import { formatCurrency, parseMoney } from "../../reducers/budgetHelpers";
 
 type InputCurrencyProps = {
   initialValue: string;
@@ -10,7 +11,6 @@ type InputCurrencyProps = {
 };
 
 const format = (val: string) => `$` + val;
-const parse = (val: string) => val.replace(/^\$/, "");
 
 const InputCurrency: React.FC<InputCurrencyProps> = ({
   initialValue,
@@ -22,7 +22,7 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
   const { dispatch } = useContext<CurrentUserContext>(UserContext);
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
   const [isEditable, setIsEditable] = useState<boolean>(false);
-  const [value, setValue] = useState<string>(parse(initialValue));
+  const [value, setValue] = useState<string>(parseMoney(initialValue));
 
   useEffect(() => {
     if (!dataLoaded) {
@@ -41,7 +41,7 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
         type: actionType,
         payload: {
           id,
-          [columnType]: value,
+          [columnType]: parseFloat(value),
         },
       });
     }, 500);
@@ -49,15 +49,17 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
 
   return isEditable ? (
     <NumberInput
-      onChange={(valueNumber: string) => setValue(parse(valueNumber))}
+      onChange={(valueNumber: string) => setValue(parseMoney(valueNumber))}
       value={format(value)}
       onBlur={() => setIsEditable(false)}
       autoFocus
+      size="sm"
+      width="auto"
     >
       <NumberInputField />
     </NumberInput>
   ) : (
-    <Text onClick={() => setIsEditable(true)}>{format(value)}</Text>
+    <Text onClick={() => setIsEditable(true)}>{formatCurrency(value)}</Text>
   );
 };
 

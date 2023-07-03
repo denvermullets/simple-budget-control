@@ -5,11 +5,11 @@ import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 type InputTextProps = {
   initialValue: string;
   id: string;
-  columnType: "endDate" | "source";
+  columnType: "endDate" | "source" | "dueDate";
   actionType: "EDIT_RECURRING" | "EDIT_CREDIT_CARD" | "EDIT_LOAN";
 };
 
-const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType }) => {
+const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType, columnType }) => {
   const timeout = useRef<null | ReturnType<typeof setTimeout>>();
   const { dispatch } = useContext<CurrentUserContext>(UserContext);
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
@@ -33,11 +33,11 @@ const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType }) =
         type: actionType,
         payload: {
           id,
-          source: value,
+          [columnType]: columnType === "source" ? value : parseFloat(value),
         },
       });
     }, 500);
-  }, [dispatch, id, dataLoaded, value, initialValue, actionType]);
+  }, [dispatch, id, dataLoaded, value, initialValue, actionType, columnType]);
 
   return isEditable ? (
     <Input

@@ -48,3 +48,11 @@ export const editCreditCards = (state: LocalStorage, newData: Partial<CreditCard
 
   return newCredit;
 };
+
+export const formatCurrency = (amount: string) =>
+  parseFloat(amount).toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
+export const parseMoney = (val: string) => val.replace(/^\$/, "");
