@@ -10,18 +10,7 @@ type RowCreditCardProps = {
 };
 
 const RowCreditCard: React.FC<RowCreditCardProps> = ({ creditCard, actionType }) => {
-  const {
-    id,
-    source,
-    balance,
-    limit,
-    availableBalance,
-    utilization,
-    timeToPayOff,
-    dueDate,
-    minimumPayment,
-    interest,
-  } = creditCard;
+  const { id, source, balance, limit, dueDate, minimumPayment, interest } = creditCard;
   const additionalProps = { id, actionType };
 
   return (
@@ -29,17 +18,6 @@ const RowCreditCard: React.FC<RowCreditCardProps> = ({ creditCard, actionType })
       <InputText initialValue={source} {...additionalProps} columnType="source" />
       <InputCurrency initialValue={balance.toString()} columnType="balance" {...additionalProps} />
       <InputCurrency initialValue={limit.toString()} columnType="limit" {...additionalProps} />
-      <InputCurrency
-        initialValue={availableBalance.toString()}
-        columnType="availableBalance"
-        {...additionalProps}
-      />
-      <InputPercentage
-        initialValue={utilization.toString()}
-        columnType="utilization"
-        {...additionalProps}
-      />
-      <InputText initialValue={timeToPayOff.toString()} {...additionalProps} columnType="source" />
       <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="source" />
       <InputCurrency
         initialValue={minimumPayment.toString()}

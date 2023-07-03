@@ -15,16 +15,12 @@ const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
     source,
     balance,
     limit,
-    // availableBalance,
-    // utilization,
-    timeToPayOff,
     minimumPayment,
     dueDate,
     // interest,
   } = creditCard;
 
   const additionalProps = { id, actionType };
-  // TODO: not all columns are editable
 
   return (
     <Tr>
@@ -34,35 +30,24 @@ const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
         </Flex>
       </Td>
       <Td>
-        {/* add limit, can probably drop utilization */}
         <Flex minHeight="50px" align="center" minWidth="200px">
-          <Balance balance={balance} limit={limit} />
+          <Balance balance={balance} limit={limit} {...additionalProps} />
         </Flex>
-        {/* <InputCurrency
-          initialValue={balance.toString()}
-          columnType="balance"
-          {...additionalProps}
-        /> */}
       </Td>
       <Td>
         <Flex minHeight="50px" align="center" minWidth="20px">
           <InputCurrency
             initialValue={minimumPayment.toString()}
-            columnType="originalAmount"
+            columnType="minimumPayment"
             {...additionalProps}
           />
         </Flex>
       </Td>
-
       <Td>
-        <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="source" />
+        <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="dueDate" />
       </Td>
       <Td>
-        <InputText
-          initialValue={timeToPayOff.toString()}
-          {...additionalProps}
-          columnType="source"
-        />
+        <Text>{Math.round(limit / balance)}</Text>
       </Td>
       <Td>
         <Text>del</Text>
