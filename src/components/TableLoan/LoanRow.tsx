@@ -2,7 +2,7 @@ import { Td, Text, Tr } from "@chakra-ui/react";
 import { Loan } from "../../models/localStorage.model";
 import InputText from "../InputText";
 import InputCurrency from "../InputCurrency";
-import InputPercentage from "../InputPercentage";
+import Balance from "../Balance";
 
 type LoanRowProps = {
   loan: Loan;
@@ -19,10 +19,8 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
     dueDate,
     remainingPayments,
     endDate,
-    interest,
   } = loan;
   const additionalProps = { id, actionType };
-  // TODO: not all columns are editable
 
   return (
     <Tr>
@@ -30,17 +28,11 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
         <InputText initialValue={source} {...additionalProps} columnType="source" />
       </Td>
       <Td>
-        <InputCurrency
-          initialValue={balance.toString()}
-          columnType="balance"
+        <Balance
           {...additionalProps}
-        />
-      </Td>
-      <Td>
-        <InputCurrency
-          initialValue={originalAmount.toString()}
+          balance={balance}
           columnType="originalAmount"
-          {...additionalProps}
+          limit={originalAmount}
         />
       </Td>
       <Td>
@@ -54,21 +46,18 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
         <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="source" />
       </Td>
       <Td>
+        <Text>{Math.round(originalAmount / balance)}</Text>
+      </Td>
+      {/* this is Actual Payments remaining (optional?) */}
+      <Td>
         <InputText
           initialValue={remainingPayments.toString()}
           {...additionalProps}
-          columnType="source"
+          columnType="remainingPayments"
         />
       </Td>
       <Td>
         <InputText initialValue={endDate.toString()} {...additionalProps} columnType="endDate" />
-      </Td>
-      <Td>
-        <InputPercentage
-          initialValue={interest.toString()}
-          columnType="interest"
-          {...additionalProps}
-        />
       </Td>
       <Td>
         <Text>del</Text>

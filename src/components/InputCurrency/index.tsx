@@ -6,7 +6,13 @@ import { formatCurrency, parseMoney } from "../../reducers/budgetHelpers";
 type InputCurrencyProps = {
   initialValue: string;
   id: string;
-  columnType: "balance" | "limit" | "availableBalance" | "minimumPayment" | "originalAmount";
+  columnType:
+    | "balance"
+    | "limit"
+    | "availableBalance"
+    | "minimumPayment"
+    | "originalAmount"
+    | "amount";
   actionType: "EDIT_RECURRING" | "EDIT_CREDIT_CARD" | "EDIT_LOAN";
 };
 

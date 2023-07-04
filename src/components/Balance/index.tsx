@@ -5,10 +5,11 @@ type BalanceProps = {
   id: string;
   limit: number;
   balance: number;
-  actionType: "EDIT_CREDIT_CARD";
+  columnType: "originalAmount" | "limit";
+  actionType: "EDIT_CREDIT_CARD" | "EDIT_LOAN";
 };
 
-const Balance: React.FC<BalanceProps> = ({ limit, balance, id, actionType }) => {
+const Balance: React.FC<BalanceProps> = ({ limit, balance, id, actionType, columnType }) => {
   return (
     <Box width="100%">
       <Stack direction="row" align="baseline">
@@ -22,7 +23,7 @@ const Balance: React.FC<BalanceProps> = ({ limit, balance, id, actionType }) => 
         <InputCurrency
           initialValue={limit.toString()}
           id={id}
-          columnType="limit"
+          columnType={columnType}
           actionType={actionType}
         />
       </Stack>

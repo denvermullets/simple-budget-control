@@ -1,36 +1,29 @@
 import { Button, Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import { useContext } from "react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
+import { headerData } from "../../models/localStorage.model";
+import { NewActions } from "../../reducers/simpleBudgetReducer";
 
-const SectionHeader: React.FC = () => {
+type SectionHeaderProps = {
+  currentTab: number;
+};
+
+const SectionHeader: React.FC<SectionHeaderProps> = ({ currentTab }) => {
   const { dispatch } = useContext<CurrentUserContext>(UserContext);
+
+  // casting because it's kind of finicky. basically i know it'll always be defined and the 'type' is
+  // always going to be correct. perhaps an enum would've been better? will have to reflect
+  const action: NewActions | undefined = headerData[currentTab]?.action as NewActions | undefined;
 
   return (
     <Flex justify="space-between" align="center">
       <VStack color="white" align="left">
         <Heading as="h3" size="lg">
-          Credit Cards
+          {headerData[currentTab].heading}
         </Heading>
-        <Text>Overall Credit Card Balances.</Text>
+        <Text>{headerData[currentTab].subHeading}</Text>
       </VStack>
-      <Button
-        onClick={() =>
-          dispatch({
-            type: "ADD_CREDIT_CARD",
-            payload: {
-              id: new Date().toString(),
-              source: "Bank of America",
-              balance: 45.97,
-              minimumPayment: 8.0,
-              limit: 450.0,
-              dueDate: 2,
-              interest: 0.74,
-            },
-          })
-        }
-      >
-        + Add
-      </Button>
+      {action && currentTab !== 0 && <Button onClick={() => dispatch(action)}>+ Add</Button>}
     </Flex>
   );
 };

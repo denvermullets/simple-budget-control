@@ -37,6 +37,59 @@ export type Loan = {
   interest: number;
 };
 
+export const headerData = [
+  {
+    heading: "Overview",
+    subHeading: "A glance at your monthly charges from multiple sources.",
+    // action: {
+    //   type: "ADD_RECURRING",
+    //   payload: { id: new Date().toString(), source: "Netflix", dueDate: 1, amount: 0 },
+    // },
+  },
+  {
+    heading: "Monthly Charges",
+    subHeading: "Monthly recurring charges.",
+    action: {
+      type: "ADD_RECURRING",
+      payload: { id: new Date().toString(), source: "Netflix", dueDate: 1, amount: 0 },
+    },
+  },
+  {
+    heading: "Credit Cards",
+    subHeading: "Overall credit card balances.",
+    action: {
+      type: "ADD_CREDIT_CARD",
+      payload: {
+        id: new Date().toString(),
+        source: "Chase",
+        balance: 0,
+        minimumPayment: 0,
+        limit: 0,
+        dueDate: 1,
+        interest: 0,
+      },
+    },
+  },
+  {
+    heading: "Loans",
+    subHeading: "Overall loan balances.",
+    action: {
+      type: "ADD_LOAN",
+      payload: {
+        id: new Date().toString(),
+        source: "Bank of America",
+        balance: 0,
+        minimumPayment: 0,
+        remainingPayments: 0,
+        originalAmount: 0,
+        dueDate: 1,
+        endDate: "8/20/26",
+        interest: 0,
+      },
+    },
+  },
+];
+
 export const INITIAL_STATE: LocalStorage = {
   monthlyRecurring: [{ id: new Date().toString(), source: "Coffee", dueDate: 14, amount: 60.0 }],
   creditCards: [

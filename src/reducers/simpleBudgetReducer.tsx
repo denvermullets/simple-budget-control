@@ -12,6 +12,8 @@ type DeleteLoan = { type: "DELETE_LOAN"; payload: Loan };
 type DeleteRecurring = { type: "DELETE_RECURRING"; payload: MonthlyRecurring };
 type UpdateBugetData = { type: "UPDATE_BUDGET_DATA"; payload: LocalStorage };
 
+export type NewActions = AddCredit | AddLoan | AddRecurring;
+
 export type Actions =
   | AddCredit
   | ModifyCredit
