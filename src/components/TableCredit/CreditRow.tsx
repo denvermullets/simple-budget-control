@@ -31,7 +31,7 @@ const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
       </Td>
       <Td>
         <Flex minHeight="50px" align="center" minWidth="200px">
-          <Balance balance={balance} limit={limit} {...additionalProps} />
+          <Balance balance={balance} limit={limit} {...additionalProps} columnType="limit" />
         </Flex>
       </Td>
       <Td>

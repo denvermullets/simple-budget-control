@@ -1,33 +1,58 @@
 import { Box, Divider, Grid, VStack } from "@chakra-ui/react";
 import SideBar from "./SideBar";
-import { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
-
 import TableCredit from "../TableCredit";
 import SectionHeader from "./SectionHeader";
+import TableLoan from "../TableLoan";
+import TableRecurring from "../TableRecurring";
 
-const MainBudget = () => {
+type MainBudgetProps = {
+  initialTab: number;
+};
+
+const MainBudget: React.FC<MainBudgetProps> = ({ initialTab }) => {
   const { localBudgetData } = useContext<CurrentUserContext>(UserContext);
+  const [currentTab, setCurrentTab] = useState<number>(initialTab || 0);
+
+  useEffect(() => {
+    setCurrentTab(initialTab);
+  }, [initialTab]);
+
+  const renderComponent = (tab: number) => {
+    switch (tab) {
+      case 0:
+        // overview
+        return (
+          <>
+            <TableRecurring data={localBudgetData.monthlyRecurring} />
+            <TableCredit data={localBudgetData.creditCards} />
+            <TableLoan data={localBudgetData.loans} />
+          </>
+        );
+      case 1:
+        // monthly recurring
+        return <TableRecurring data={localBudgetData.monthlyRecurring} />;
+      case 2:
+        // credit cards
+        return <TableCredit data={localBudgetData.creditCards} />;
+      case 3:
+        // loans
+        return <TableLoan data={localBudgetData.loans} />;
+      default:
+        return <TableCredit data={localBudgetData.creditCards} />;
+    }
+  };
 
   return (
     <Grid templateColumns="400px 1px 1fr" gap={8} color="white" marginTop={8} marginLeft={8}>
-      <SideBar />
+      <SideBar currentTab={currentTab} setCurrentTab={setCurrentTab} />
       <Divider orientation="vertical" />
       <Box maxWidth="100%" paddingRight={12}>
         <VStack color="white" align="left">
-          <SectionHeader />
+          <SectionHeader currentTab={currentTab} />
           <Divider marginTop={2} />
-          <Box
-            marginTop={4}
-            // margin={12}
-            border="0.5px solid"
-            borderColor="gray.600"
-            borderRadius={8}
-            sx={{ overflow: "hidden" }}
-          >
-            <TableCredit data={localBudgetData.creditCards} />
-            {/* <TableLoan data={localBudgetData.loans} /> */}
-          </Box>
+          {renderComponent(currentTab)}
         </VStack>
       </Box>
     </Grid>

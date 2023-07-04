@@ -1,7 +1,13 @@
 import { Divider, Heading, VStack, Image, Tabs, TabList, Tab, Text, Flex } from "@chakra-ui/react";
 import creditImage from "../../assets/stack.png";
+import { Link } from "react-router-dom";
 
-const SideBar = () => {
+type SideBarProps = {
+  currentTab: number;
+  setCurrentTab: (currentTab: number) => void;
+};
+
+const SideBar: React.FC<SideBarProps> = ({ currentTab, setCurrentTab }) => {
   return (
     <VStack color="white" align="left" marginBottom={20} marginLeft={4}>
       <Heading as="h3" size="lg">
@@ -10,12 +16,20 @@ const SideBar = () => {
       <Text>Manage your monthly spending.</Text>
       <Divider marginTop={2} />
       <Image src={creditImage} objectFit="cover" alt="Devin Booker's Credit Cards" marginTop={4} />
-      <Tabs onChange={(index) => console.log("clicked", index)} size="sm" marginTop={12}>
+      <Tabs index={currentTab} onChange={(index) => setCurrentTab(index)} size="sm" marginTop={12}>
         <TabList>
-          <Tab fontSize="14">Overview</Tab>
-          <Tab fontSize="14">Recurring</Tab>
-          <Tab fontSize="14">Credit Cards</Tab>
-          <Tab fontSize="14">Loans</Tab>
+          <Tab fontSize="14">
+            <Link to="/">Overview</Link>
+          </Tab>
+          <Tab fontSize="14">
+            <Link to="/monthly-recurring">Recurring</Link>
+          </Tab>
+          <Tab fontSize="14">
+            <Link to="/credit-cards">Credit Cards</Link>
+          </Tab>
+          <Tab fontSize="14">
+            <Link to="/loans">Loans</Link>
+          </Tab>
         </TabList>
       </Tabs>
       <Flex justify="space-between" align="center" marginTop={2}>
