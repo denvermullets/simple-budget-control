@@ -1,9 +1,12 @@
-import { Flex, HStack, Td, Text, Tr } from "@chakra-ui/react";
+import { Flex, HStack, IconButton, Td, Text, Tr } from "@chakra-ui/react";
 import { CreditCard } from "../../models/localStorage.model";
 import InputText from "../InputText";
 import InputCurrency from "../InputCurrency";
 import Balance from "../Balance";
 import CheckboxPending from "../CheckboxPending";
+import { useContext } from "react";
+import { CurrentUserContext, UserContext } from "../../providers/UserContext";
+import { FiTrash2 } from "react-icons/fi";
 
 type CreditRowProps = {
   creditCard: CreditCard;
@@ -11,6 +14,7 @@ type CreditRowProps = {
 };
 
 const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
+  const { dispatch } = useContext<CurrentUserContext>(UserContext);
   const { id, source, balance, limit, minimumPayment, dueDate } = creditCard;
   const additionalProps = { id, actionType };
 
@@ -42,10 +46,20 @@ const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
         <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="dueDate" />
       </Td>
       <Td>
-        <Text>{Math.round(limit / balance)}</Text>
+        <Text>{Math.round(limit / balance) || 0}</Text>
       </Td>
       <Td>
-        <Text>del</Text>
+        <IconButton
+          icon={<FiTrash2 />}
+          variant="tertiary"
+          aria-label="Delete credit card"
+          onClick={() =>
+            dispatch({
+              type: "DELETE_CREDIT_CARD",
+              payload: creditCard,
+            })
+          }
+        />
       </Td>
     </Tr>
   );

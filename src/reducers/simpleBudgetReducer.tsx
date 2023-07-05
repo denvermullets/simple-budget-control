@@ -51,11 +51,11 @@ export const simpleBudgetReducer = (state: LocalStorage, action: Actions) => {
     case "DELETE_LOAN":
       setLocalStorage({
         ...state,
-        loans: state.loans.filter((loan) => loan.source !== action.payload.source),
+        loans: state.loans.filter((loan) => loan.id !== action.payload.id),
       });
       return {
         ...state,
-        loans: state.loans.filter((loan) => loan.source !== action.payload.source),
+        loans: state.loans.filter((loan) => loan.id !== action.payload.id),
       };
     case "ADD_RECURRING":
       setLocalStorage({ ...state, monthlyRecurring: [...state.monthlyRecurring, action.payload] });
@@ -73,13 +73,13 @@ export const simpleBudgetReducer = (state: LocalStorage, action: Actions) => {
       setLocalStorage({
         ...state,
         monthlyRecurring: state.monthlyRecurring.filter(
-          (recurring) => recurring.source !== action.payload.source
+          (recurring) => recurring.id !== action.payload.id
         ),
       });
       return {
         ...state,
         monthlyRecurring: state.monthlyRecurring.filter(
-          (recurring) => recurring.source !== action.payload.source
+          (recurring) => recurring.id !== action.payload.id
         ),
       };
     case "ADD_CREDIT_CARD":
@@ -93,6 +93,15 @@ export const simpleBudgetReducer = (state: LocalStorage, action: Actions) => {
       return {
         ...state,
         creditCards: editCreditCards(state, action.payload),
+      };
+    case "DELETE_CREDIT_CARD":
+      setLocalStorage({
+        ...state,
+        creditCards: state.creditCards.filter((credit) => credit.id !== action.payload.id),
+      });
+      return {
+        ...state,
+        creditCards: state.creditCards.filter((credit) => credit.id !== action.payload.id),
       };
     case "UPDATE_AMOUNT_FREE":
       setLocalStorage({ ...state, accountInfo: { ...action.payload } });

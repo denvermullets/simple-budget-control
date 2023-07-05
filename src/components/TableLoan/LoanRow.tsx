@@ -1,9 +1,12 @@
-import { HStack, Td, Text, Tr } from "@chakra-ui/react";
+import { HStack, IconButton, Td, Text, Tr } from "@chakra-ui/react";
 import { Loan } from "../../models/localStorage.model";
 import InputText from "../InputText";
 import InputCurrency from "../InputCurrency";
 import Balance from "../Balance";
 import CheckboxPending from "../CheckboxPending";
+import { useContext } from "react";
+import { CurrentUserContext, UserContext } from "../../providers/UserContext";
+import { FiTrash2 } from "react-icons/fi";
 
 type LoanRowProps = {
   loan: Loan;
@@ -11,6 +14,7 @@ type LoanRowProps = {
 };
 
 const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
+  const { dispatch } = useContext<CurrentUserContext>(UserContext);
   const {
     id,
     source,
@@ -50,7 +54,7 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
         <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="source" />
       </Td>
       <Td>
-        <Text>{Math.round(originalAmount / balance)}</Text>
+        <Text>{Math.round(originalAmount / balance) || 0}</Text>
       </Td>
       {/* this is Actual Payments remaining (optional?) */}
       <Td>
@@ -64,7 +68,17 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
         <InputText initialValue={endDate.toString()} {...additionalProps} columnType="endDate" />
       </Td>
       <Td>
-        <Text>del</Text>
+        <IconButton
+          icon={<FiTrash2 />}
+          variant="tertiary"
+          aria-label="Delete credit card"
+          onClick={() =>
+            dispatch({
+              type: "DELETE_LOAN",
+              payload: loan,
+            })
+          }
+        />
       </Td>
     </Tr>
   );
