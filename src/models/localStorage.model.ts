@@ -107,22 +107,12 @@ export const headerData = [
 export const INITIAL_STATE: LocalStorage = {
   accountInfo: { amountFree: 0 },
   monthlyRecurring: [
-    { id: new Date().toString(), source: "Coffee", dueDate: 14, amount: 60.0, pending: true },
+    { id: "recurring_1", source: "Coffee", dueDate: 14, amount: 60.0, pending: true },
   ],
   creditCards: [
     {
-      id: new Date().toString(),
+      id: "creditCard_1",
       source: "Credit Card 1",
-      balance: 743.18,
-      limit: 3500,
-      dueDate: 12,
-      minimumPayment: 35,
-      interest: 21.49,
-      pending: true,
-    },
-    {
-      id: new Date().toString() + 1,
-      source: "Credit Card 2",
       balance: 743.18,
       limit: 3500,
       dueDate: 12,
@@ -133,7 +123,7 @@ export const INITIAL_STATE: LocalStorage = {
   ],
   loans: [
     {
-      id: new Date().toString(),
+      id: "loan_1",
       source: "Bank of America",
       balance: 446.97,
       minimumPayment: 134.73,
@@ -142,18 +132,6 @@ export const INITIAL_STATE: LocalStorage = {
       dueDate: 20,
       endDate: "8/20/24",
       interest: 15.74,
-      pending: true,
-    },
-    {
-      id: new Date().toString() + 1,
-      source: "Chase",
-      balance: 3245.12,
-      minimumPayment: 89.15,
-      remainingPayments: 8,
-      originalAmount: 6000.0,
-      dueDate: 15,
-      endDate: "8/20/24",
-      interest: 21.24,
       pending: true,
     },
   ],
