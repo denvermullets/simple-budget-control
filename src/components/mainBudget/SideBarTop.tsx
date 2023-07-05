@@ -14,9 +14,21 @@ const SideBarTop: React.FC = () => {
       let loans = 0;
       let monthlyRecurring = 0;
 
-      localBudgetData.creditCards.map((creditCard) => (creditCards += creditCard.minimumPayment));
-      localBudgetData.loans.map((loan) => (loans += loan.minimumPayment));
-      localBudgetData.monthlyRecurring.map((recurring) => (monthlyRecurring += recurring.amount));
+      localBudgetData.creditCards.map((creditCard) => {
+        if (creditCard.pending) {
+          creditCards += creditCard.minimumPayment;
+        }
+      });
+      localBudgetData.loans.map((loan) => {
+        if (loan.pending) {
+          loans += loan.minimumPayment;
+        }
+      });
+      localBudgetData.monthlyRecurring.map((recurring) => {
+        if (recurring.pending) {
+          monthlyRecurring += recurring.amount;
+        }
+      });
 
       return creditCards + loans + monthlyRecurring;
     };

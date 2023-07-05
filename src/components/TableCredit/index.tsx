@@ -20,6 +20,7 @@ const TableCredit: React.FC<TableCreditProps> = ({ data }) => {
           <Tr>
             <Th textTransform="none">
               {/* <HStack spacing="3"> */}
+              {/* <Checkbox /> */}
               {/* <HStack spacing="1"> */}
               <Text>Source</Text>
               {/* <Icon as={IoArrowDown} color="fg.muted" boxSize="4" /> */}
