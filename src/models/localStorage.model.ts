@@ -9,7 +9,7 @@ export type LocalStorage = {
 };
 
 export type MonthlyRecurring = {
-  id: string;
+  id: number;
   source: string;
   dueDate: number;
   amount: number;
@@ -17,7 +17,7 @@ export type MonthlyRecurring = {
 };
 
 export type CreditCard = {
-  id: string;
+  id: number;
   source: string;
   balance: number;
   limit: number;
@@ -28,7 +28,7 @@ export type CreditCard = {
 };
 
 export type Loan = {
-  id: string;
+  id: number;
   source: string;
   balance: number;
   originalAmount: number;
@@ -47,82 +47,13 @@ export type AccountInfo = {
   // etc
 };
 
-export const headerData = [
-  {
-    heading: "Overview",
-    subHeading: "A glance at your monthly charges from multiple sources.",
-  },
-  {
-    heading: "Monthly Charges",
-    subHeading: "Monthly recurring charges.",
-    action: {
-      type: "ADD_RECURRING",
-      payload: {
-        id: new Date().toString(),
-        source: "Netflix",
-        dueDate: 1,
-        amount: 0,
-        pending: true,
-      },
-    },
-  },
-  {
-    heading: "Credit Cards",
-    subHeading: "Overall credit card balances.",
-    action: {
-      type: "ADD_CREDIT_CARD",
-      payload: {
-        id: new Date().toString(),
-        source: "Chase",
-        balance: 0,
-        minimumPayment: 0,
-        limit: 0,
-        dueDate: 1,
-        interest: 0,
-        pending: true,
-      },
-    },
-  },
-  {
-    heading: "Loans",
-    subHeading: "Overall loan balances.",
-    action: {
-      type: "ADD_LOAN",
-      payload: {
-        id: new Date().toString(),
-        source: "Bank of America",
-        balance: 0,
-        minimumPayment: 0,
-        remainingPayments: 0,
-        originalAmount: 0,
-        dueDate: 1,
-        endDate: "8/20/26",
-        interest: 0,
-        pending: true,
-      },
-    },
-  },
-];
-
 export const INITIAL_STATE: LocalStorage = {
   accountInfo: { amountFree: 0 },
-  monthlyRecurring: [
-    { id: new Date().toString(), source: "Coffee", dueDate: 14, amount: 60.0, pending: true },
-  ],
+  monthlyRecurring: [{ id: 1, source: "Coffee", dueDate: 14, amount: 60.0, pending: true }],
   creditCards: [
     {
-      id: new Date().toString(),
+      id: 2,
       source: "Credit Card 1",
-      balance: 743.18,
-      limit: 3500,
-      dueDate: 12,
-      minimumPayment: 35,
-      interest: 21.49,
-      pending: true,
-    },
-    {
-      id: new Date().toString() + 1,
-      source: "Credit Card 2",
       balance: 743.18,
       limit: 3500,
       dueDate: 12,
@@ -133,7 +64,7 @@ export const INITIAL_STATE: LocalStorage = {
   ],
   loans: [
     {
-      id: new Date().toString(),
+      id: 3,
       source: "Bank of America",
       balance: 446.97,
       minimumPayment: 134.73,
@@ -144,17 +75,20 @@ export const INITIAL_STATE: LocalStorage = {
       interest: 15.74,
       pending: true,
     },
-    {
-      id: new Date().toString() + 1,
-      source: "Chase",
-      balance: 3245.12,
-      minimumPayment: 89.15,
-      remainingPayments: 8,
-      originalAmount: 6000.0,
-      dueDate: 15,
-      endDate: "8/20/24",
-      interest: 21.24,
-      pending: true,
-    },
   ],
+};
+
+export const generateId = () => {
+  const data = localStorage.getItem("simpleBudget");
+  const parsedData: LocalStorage = data ? JSON.parse(data) : INITIAL_STATE;
+  const currentIds: number[] = [];
+
+  parsedData.creditCards.map((credit) => currentIds.push(credit.id));
+  parsedData.loans.map((loan) => currentIds.push(loan.id));
+  parsedData.monthlyRecurring.map((recurring) => currentIds.push(recurring.id));
+
+  const sortedIds = currentIds.sort((a, b) => a - b);
+  const newId = sortedIds[sortedIds.length - 1] + 1;
+
+  return newId;
 };

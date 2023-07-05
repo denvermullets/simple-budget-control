@@ -1,8 +1,11 @@
-import { Flex, HStack, Td, Text, Tr } from "@chakra-ui/react";
+import { Flex, HStack, IconButton, Td, Tr } from "@chakra-ui/react";
 import { MonthlyRecurring } from "../../models/localStorage.model";
 import InputText from "../InputText";
 import InputCurrency from "../InputCurrency";
 import CheckboxPending from "../CheckboxPending";
+import { useContext } from "react";
+import { CurrentUserContext, UserContext } from "../../providers/UserContext";
+import { FiTrash2 } from "react-icons/fi";
 
 type RecurringRowProps = {
   monthlyRecurring: MonthlyRecurring;
@@ -10,6 +13,7 @@ type RecurringRowProps = {
 };
 
 const RecurringRow: React.FC<RecurringRowProps> = ({ monthlyRecurring, actionType }) => {
+  const { dispatch } = useContext<CurrentUserContext>(UserContext);
   const { id, source, dueDate, amount } = monthlyRecurring;
   const additionalProps = { id, actionType };
 
@@ -36,7 +40,17 @@ const RecurringRow: React.FC<RecurringRowProps> = ({ monthlyRecurring, actionTyp
         <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="dueDate" />
       </Td>
       <Td>
-        <Text>del</Text>
+        <IconButton
+          icon={<FiTrash2 />}
+          variant="tertiary"
+          aria-label="Delete credit card"
+          onClick={() =>
+            dispatch({
+              type: "DELETE_RECURRING",
+              payload: monthlyRecurring,
+            })
+          }
+        />
       </Td>
     </Tr>
   );

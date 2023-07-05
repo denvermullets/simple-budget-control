@@ -5,7 +5,7 @@ import { formatCurrency, parseMoney } from "../../reducers/budgetHelpers";
 
 type InputCurrencyProps = {
   initialValue: string;
-  id: string;
+  id: number;
   columnType:
     | "balance"
     | "limit"

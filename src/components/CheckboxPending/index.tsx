@@ -4,7 +4,7 @@ import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 
 type CheckboxPendingProps = {
   initialValue: boolean;
-  id: string;
+  id: number;
   actionType: "EDIT_RECURRING" | "EDIT_CREDIT_CARD" | "EDIT_LOAN";
 };
 

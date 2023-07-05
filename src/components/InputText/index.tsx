@@ -4,7 +4,7 @@ import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 
 type InputTextProps = {
   initialValue: string;
-  id: string;
+  id: number;
   columnType: "endDate" | "source" | "dueDate" | "remainingPayments";
   actionType: "EDIT_RECURRING" | "EDIT_CREDIT_CARD" | "EDIT_LOAN";
 };
