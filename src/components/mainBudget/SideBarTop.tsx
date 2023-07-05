@@ -42,7 +42,7 @@ const SideBarTop: React.FC = () => {
         <Text size="xs">Current amount free</Text>
         <Heading as="h3" size="md">
           <InputCurrency
-            id="amountFreeId"
+            id={0}
             initialValue={localBudgetData.accountInfo.amountFree.toString()}
             columnType="amountFree"
             actionType="UPDATE_AMOUNT_FREE"

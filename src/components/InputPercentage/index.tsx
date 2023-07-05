@@ -4,7 +4,7 @@ import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 
 type InputPercentageProps = {
   initialValue: string;
-  id: string;
+  id: number;
   columnType: "utilization" | "interest";
   actionType: "EDIT_RECURRING" | "EDIT_CREDIT_CARD" | "EDIT_LOAN";
 };

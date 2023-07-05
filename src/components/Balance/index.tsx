@@ -2,7 +2,7 @@ import { Box, Progress, Stack, Text } from "@chakra-ui/react";
 import InputCurrency from "../InputCurrency";
 
 type BalanceProps = {
-  id: string;
+  id: number;
   limit: number;
   balance: number;
   columnType: "originalAmount" | "limit";
