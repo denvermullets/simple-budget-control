@@ -5,6 +5,7 @@ export type LocalStorage = {
   monthlyRecurring: MonthlyRecurring[];
   creditCards: CreditCard[];
   loans: Loan[];
+  accountInfo: AccountInfo;
 };
 
 export type MonthlyRecurring = {
@@ -37,14 +38,16 @@ export type Loan = {
   interest: number;
 };
 
+export type AccountInfo = {
+  amountFree: number;
+  // pay period
+  // etc
+};
+
 export const headerData = [
   {
     heading: "Overview",
     subHeading: "A glance at your monthly charges from multiple sources.",
-    // action: {
-    //   type: "ADD_RECURRING",
-    //   payload: { id: new Date().toString(), source: "Netflix", dueDate: 1, amount: 0 },
-    // },
   },
   {
     heading: "Monthly Charges",
@@ -91,6 +94,7 @@ export const headerData = [
 ];
 
 export const INITIAL_STATE: LocalStorage = {
+  accountInfo: { amountFree: 0 },
   monthlyRecurring: [{ id: new Date().toString(), source: "Coffee", dueDate: 14, amount: 60.0 }],
   creditCards: [
     {

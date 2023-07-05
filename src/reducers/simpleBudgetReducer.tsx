@@ -1,4 +1,10 @@
-import { CreditCard, Loan, LocalStorage, MonthlyRecurring } from "../models/localStorage.model";
+import {
+  AccountInfo,
+  CreditCard,
+  Loan,
+  LocalStorage,
+  MonthlyRecurring,
+} from "../models/localStorage.model";
 import { editCreditCards, editLoan, editRecurring, setLocalStorage } from "./budgetHelpers";
 
 type AddCredit = { type: "ADD_CREDIT_CARD"; payload: CreditCard };
@@ -11,6 +17,7 @@ type DeleteCreditCard = { type: "DELETE_CREDIT_CARD"; payload: CreditCard };
 type DeleteLoan = { type: "DELETE_LOAN"; payload: Loan };
 type DeleteRecurring = { type: "DELETE_RECURRING"; payload: MonthlyRecurring };
 type UpdateBugetData = { type: "UPDATE_BUDGET_DATA"; payload: LocalStorage };
+type UpdateAmountFree = { type: "UPDATE_AMOUNT_FREE"; payload: AccountInfo };
 
 export type NewActions = AddCredit | AddLoan | AddRecurring;
 
@@ -24,7 +31,8 @@ export type Actions =
   | AddRecurring
   | ModifyRecurring
   | DeleteRecurring
-  | UpdateBugetData;
+  | UpdateBugetData
+  | UpdateAmountFree;
 
 export const simpleBudgetReducer = (state: LocalStorage, action: Actions) => {
   switch (action.type) {
@@ -86,6 +94,9 @@ export const simpleBudgetReducer = (state: LocalStorage, action: Actions) => {
         ...state,
         creditCards: editCreditCards(state, action.payload),
       };
+    case "UPDATE_AMOUNT_FREE":
+      setLocalStorage({ ...state, accountInfo: { ...action.payload } });
+      return { ...state, accountInfo: { ...action.payload } };
     case "UPDATE_BUDGET_DATA":
       return state;
     default:
