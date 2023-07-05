@@ -1,8 +1,9 @@
-import { Td, Text, Tr } from "@chakra-ui/react";
+import { HStack, Td, Text, Tr } from "@chakra-ui/react";
 import { Loan } from "../../models/localStorage.model";
 import InputText from "../InputText";
 import InputCurrency from "../InputCurrency";
 import Balance from "../Balance";
+import CheckboxPending from "../CheckboxPending";
 
 type LoanRowProps = {
   loan: Loan;
@@ -25,7 +26,10 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
   return (
     <Tr>
       <Td>
-        <InputText initialValue={source} {...additionalProps} columnType="source" />
+        <HStack spacing="3">
+          <CheckboxPending {...additionalProps} initialValue={loan.pending} />
+          <InputText initialValue={source} {...additionalProps} columnType="source" />
+        </HStack>
       </Td>
       <Td>
         <Balance

@@ -1,7 +1,8 @@
-import { Flex, Td, Text, Tr } from "@chakra-ui/react";
+import { Flex, HStack, Td, Text, Tr } from "@chakra-ui/react";
 import { MonthlyRecurring } from "../../models/localStorage.model";
 import InputText from "../InputText";
 import InputCurrency from "../InputCurrency";
+import CheckboxPending from "../CheckboxPending";
 
 type RecurringRowProps = {
   monthlyRecurring: MonthlyRecurring;
@@ -16,7 +17,10 @@ const RecurringRow: React.FC<RecurringRowProps> = ({ monthlyRecurring, actionTyp
     <Tr>
       <Td>
         <Flex minHeight="50px" align="center" minWidth="200px">
-          <InputText initialValue={source} {...additionalProps} columnType="source" />
+          <HStack spacing="3">
+            <CheckboxPending {...additionalProps} initialValue={monthlyRecurring.pending} />
+            <InputText initialValue={source} {...additionalProps} columnType="source" />
+          </HStack>
         </Flex>
       </Td>
       <Td>

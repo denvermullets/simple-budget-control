@@ -13,6 +13,7 @@ export type MonthlyRecurring = {
   source: string;
   dueDate: number;
   amount: number;
+  pending: boolean;
 };
 
 export type CreditCard = {
@@ -23,6 +24,7 @@ export type CreditCard = {
   dueDate: number;
   minimumPayment: number;
   interest: number;
+  pending: boolean;
 };
 
 export type Loan = {
@@ -36,6 +38,7 @@ export type Loan = {
   // putting as string for now but later i can implement a datepicker and use Date
   endDate: string;
   interest: number;
+  pending: boolean;
 };
 
 export type AccountInfo = {
@@ -54,7 +57,13 @@ export const headerData = [
     subHeading: "Monthly recurring charges.",
     action: {
       type: "ADD_RECURRING",
-      payload: { id: new Date().toString(), source: "Netflix", dueDate: 1, amount: 0 },
+      payload: {
+        id: new Date().toString(),
+        source: "Netflix",
+        dueDate: 1,
+        amount: 0,
+        pending: true,
+      },
     },
   },
   {
@@ -70,6 +79,7 @@ export const headerData = [
         limit: 0,
         dueDate: 1,
         interest: 0,
+        pending: true,
       },
     },
   },
@@ -88,6 +98,7 @@ export const headerData = [
         dueDate: 1,
         endDate: "8/20/26",
         interest: 0,
+        pending: true,
       },
     },
   },
@@ -95,7 +106,9 @@ export const headerData = [
 
 export const INITIAL_STATE: LocalStorage = {
   accountInfo: { amountFree: 0 },
-  monthlyRecurring: [{ id: new Date().toString(), source: "Coffee", dueDate: 14, amount: 60.0 }],
+  monthlyRecurring: [
+    { id: new Date().toString(), source: "Coffee", dueDate: 14, amount: 60.0, pending: true },
+  ],
   creditCards: [
     {
       id: new Date().toString(),
@@ -105,6 +118,7 @@ export const INITIAL_STATE: LocalStorage = {
       dueDate: 12,
       minimumPayment: 35,
       interest: 21.49,
+      pending: true,
     },
     {
       id: new Date().toString() + 1,
@@ -114,6 +128,7 @@ export const INITIAL_STATE: LocalStorage = {
       dueDate: 12,
       minimumPayment: 35,
       interest: 21.49,
+      pending: true,
     },
   ],
   loans: [
@@ -127,6 +142,7 @@ export const INITIAL_STATE: LocalStorage = {
       dueDate: 20,
       endDate: "8/20/24",
       interest: 15.74,
+      pending: true,
     },
     {
       id: new Date().toString() + 1,
@@ -138,6 +154,7 @@ export const INITIAL_STATE: LocalStorage = {
       dueDate: 15,
       endDate: "8/20/24",
       interest: 21.24,
+      pending: true,
     },
   ],
 };
