@@ -17,6 +17,7 @@ export interface CurrentUserContext {
 
 export const UserContext = createContext<CurrentUserContext>({
   localBudgetData: {
+    accountInfo: { amountFree: 0 },
     monthlyRecurring: [],
     creditCards: [],
     loans: [],

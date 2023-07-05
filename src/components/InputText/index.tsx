@@ -36,7 +36,7 @@ const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType, col
           [columnType]: columnType === "source" ? value : parseFloat(value),
         },
       });
-    }, 500);
+    }, 1000);
   }, [dispatch, id, dataLoaded, value, initialValue, actionType, columnType]);
 
   return isEditable ? (

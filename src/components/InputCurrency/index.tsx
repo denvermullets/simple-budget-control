@@ -12,8 +12,9 @@ type InputCurrencyProps = {
     | "availableBalance"
     | "minimumPayment"
     | "originalAmount"
-    | "amount";
-  actionType: "EDIT_RECURRING" | "EDIT_CREDIT_CARD" | "EDIT_LOAN";
+    | "amount"
+    | "amountFree";
+  actionType: "EDIT_RECURRING" | "EDIT_CREDIT_CARD" | "EDIT_LOAN" | "UPDATE_AMOUNT_FREE";
 };
 
 const format = (val: string) => `$` + val;
@@ -43,14 +44,23 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
 
     timeout.current = setTimeout(async () => {
       console.log("timeout", actionType);
-      dispatch({
-        type: actionType,
-        payload: {
-          id,
-          [columnType]: parseFloat(value),
-        },
-      });
-    }, 500);
+      if (actionType === "UPDATE_AMOUNT_FREE") {
+        dispatch({
+          type: "UPDATE_AMOUNT_FREE",
+          payload: {
+            amountFree: parseFloat(value),
+          },
+        });
+      } else {
+        dispatch({
+          type: actionType,
+          payload: {
+            id,
+            [columnType]: parseFloat(value),
+          },
+        });
+      }
+    }, 1000);
   }, [dispatch, id, dataLoaded, value, initialValue, columnType, actionType]);
 
   return isEditable ? (

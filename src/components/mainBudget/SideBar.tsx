@@ -1,6 +1,8 @@
-import { Divider, Heading, VStack, Image, Tabs, TabList, Tab, Text, Flex } from "@chakra-ui/react";
+import { Divider, Heading, VStack, Image, Tabs, TabList, Tab, Text } from "@chakra-ui/react";
 import creditImage from "../../assets/stack.png";
 import { Link } from "react-router-dom";
+import SideBarTop from "./SideBarTop";
+import SideBarBottom from "./SideBarBottom";
 
 type SideBarProps = {
   currentTab: number;
@@ -32,43 +34,9 @@ const SideBar: React.FC<SideBarProps> = ({ currentTab, setCurrentTab }) => {
           </Tab>
         </TabList>
       </Tabs>
-      <Flex justify="space-between" align="center" marginTop={2}>
-        <Text size="xs">Current amount free</Text>
-        <Heading as="h3" size="md">
-          $34,390.00
-        </Heading>
-      </Flex>
-      <Flex justify="space-between" align="center" marginTop={2}>
-        <Text size="xs">Charges pending</Text>
-        <Heading as="h3" size="md">
-          $34,390.00
-        </Heading>
-      </Flex>
-      <Flex justify="space-between" align="center" marginTop={2}>
-        <Text size="xs">Amount remaining</Text>
-        <Heading as="h3" size="md">
-          $34,390.00
-        </Heading>
-      </Flex>
+      <SideBarTop />
       <Divider marginTop={2} />
-      <Flex justify="space-between" align="center" marginTop={2}>
-        <Text size="xs">Recurring charges</Text>
-        <Heading as="h3" size="md">
-          $34,390.00
-        </Heading>
-      </Flex>
-      <Flex justify="space-between" align="center" marginTop={2}>
-        <Text size="xs">Credit card payments</Text>
-        <Heading as="h3" size="md">
-          $34,390.00
-        </Heading>
-      </Flex>
-      <Flex justify="space-between" align="center" marginTop={2}>
-        <Text size="xs">Loan payments</Text>
-        <Heading as="h3" size="md">
-          $34,390.00
-        </Heading>
-      </Flex>
+      <SideBarBottom />
     </VStack>
   );
 };

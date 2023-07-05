@@ -44,7 +44,7 @@ const InputPercentage: React.FC<InputPercentageProps> = ({
           [columnType]: value,
         },
       });
-    }, 500);
+    }, 1000);
   }, [dispatch, id, dataLoaded, value, initialValue, columnType, actionType]);
 
   return isEditable ? (
