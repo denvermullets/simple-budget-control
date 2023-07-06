@@ -7,6 +7,8 @@ type TableCreditProps = {
 };
 
 const TableCredit: React.FC<TableCreditProps> = ({ data }) => {
+  const sortedData = data.sort((a, b) => a.dueDate - b.dueDate);
+
   return (
     <Box
       marginTop={4}
@@ -37,7 +39,7 @@ const TableCredit: React.FC<TableCreditProps> = ({ data }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((creditCard) => (
+          {sortedData.map((creditCard) => (
             <CreditRow key={creditCard.id} creditCard={creditCard} actionType="EDIT_CREDIT_CARD" />
           ))}
         </Tbody>

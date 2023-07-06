@@ -7,6 +7,8 @@ type TableLoanProps = {
 };
 
 const TableLoan: React.FC<TableLoanProps> = ({ data }) => {
+  const sortedData = data.sort((a, b) => a.dueDate - b.dueDate);
+
   return (
     <Box
       marginTop={4}
@@ -38,7 +40,7 @@ const TableLoan: React.FC<TableLoanProps> = ({ data }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((loan) => (
+          {sortedData.map((loan) => (
             <LoanRow key={loan.id} loan={loan} actionType="EDIT_LOAN" />
           ))}
         </Tbody>

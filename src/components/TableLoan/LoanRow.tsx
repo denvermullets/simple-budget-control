@@ -51,10 +51,10 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
         />
       </Td>
       <Td>
-        <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="source" />
+        <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="dueDate" />
       </Td>
       <Td>
-        <Text>{Math.round(originalAmount / balance) || 0}</Text>
+        <Text>{Math.round(balance / minimumPayment) || 0}</Text>
       </Td>
       {/* this is Actual Payments remaining (optional?) */}
       <Td>

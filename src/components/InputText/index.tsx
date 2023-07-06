@@ -33,7 +33,8 @@ const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType, col
         type: actionType,
         payload: {
           id,
-          [columnType]: columnType === "source" ? value : parseFloat(value),
+          [columnType]:
+            columnType === "source" || columnType === "endDate" ? value : parseFloat(value),
         },
       });
     }, 1000);

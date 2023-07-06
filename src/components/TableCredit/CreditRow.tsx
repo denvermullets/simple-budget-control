@@ -46,7 +46,7 @@ const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
         <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="dueDate" />
       </Td>
       <Td>
-        <Text>{Math.round(limit / balance) || 0}</Text>
+        <Text>{Math.round(balance / minimumPayment) || 0}</Text>
       </Td>
       <Td>
         <IconButton
