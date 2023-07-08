@@ -14,7 +14,7 @@ type RecurringRowProps = {
 
 const RecurringRow: React.FC<RecurringRowProps> = ({ monthlyRecurring, actionType }) => {
   const { dispatch } = useContext<CurrentUserContext>(UserContext);
-  const { id, source, dueDate, amount } = monthlyRecurring;
+  const { id, source, dueDate, amount, pending } = monthlyRecurring;
   const additionalProps = { id, actionType };
 
   return (
@@ -22,7 +22,11 @@ const RecurringRow: React.FC<RecurringRowProps> = ({ monthlyRecurring, actionTyp
       <Td>
         <Flex minHeight="50px" align="center" minWidth="200px">
           <HStack spacing="3">
-            <CheckboxPending {...additionalProps} initialValue={monthlyRecurring.pending} />
+            <CheckboxPending
+              {...additionalProps}
+              initialValue={pending}
+              key={id.toString() + pending}
+            />
             <InputText initialValue={source} {...additionalProps} columnType="source" />
           </HStack>
         </Flex>

@@ -1,4 +1,5 @@
 import { CreditCard, Loan, LocalStorage, MonthlyRecurring } from "../models/localStorage.model";
+import dayjs from "dayjs";
 
 // TODO: maybe refactor these? i realize there's duplicated code but to get around it would
 // require some type assertions and/or type checks that end up adding more code than just duplicating it
@@ -56,3 +57,34 @@ export const formatCurrency = (amount: string) =>
   });
 
 export const parseMoney = (val: string) => val.replace(/^\$/, "");
+
+export const updateLocalStorage = (startDate: Date, endDate: Date, data: LocalStorage) => {
+  const start = dayjs(startDate);
+  const end = dayjs(endDate);
+  const numberOfDays = end.diff(start, "day") + 1;
+
+  const dates = Array.from({ length: numberOfDays }, (_, index) => start.add(index, "day").date());
+
+  const updatedMonthly = data.monthlyRecurring.map((recurring) => ({
+    ...recurring,
+    pending: dates.includes(recurring.dueDate),
+  }));
+  const updatedCreditCards = data.creditCards.map((credit) => ({
+    ...credit,
+    pending: dates.includes(credit.dueDate),
+  }));
+  const updatedLoans = data.loans.map((loan) => ({
+    ...loan,
+    pending: dates.includes(loan.dueDate),
+  }));
+
+  const updatedLocalStorage: LocalStorage = {
+    ...data,
+    accountInfo: { ...data.accountInfo, payPeriodStart: startDate, payPeriodEnd: endDate },
+    monthlyRecurring: updatedMonthly,
+    creditCards: updatedCreditCards,
+    loans: updatedLoans,
+  };
+
+  return updatedLocalStorage;
+};

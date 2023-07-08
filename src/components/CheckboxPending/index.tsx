@@ -1,5 +1,5 @@
 import { Checkbox } from "@chakra-ui/react";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 
 type CheckboxPendingProps = {
@@ -9,10 +9,13 @@ type CheckboxPendingProps = {
 };
 
 const CheckboxPending: React.FC<CheckboxPendingProps> = ({ initialValue, id, actionType }) => {
-  const timeout = useRef<null | ReturnType<typeof setTimeout>>();
   const { dispatch } = useContext<CurrentUserContext>(UserContext);
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(initialValue);
+
+  // in an attempt to prevent re-renders from when there is a discrepancy from this controlled
+  //  internal state and when we change the global data we are passing the key like this:
+  // key={id.toString() + localStorageValue}
 
   useEffect(() => {
     if (!dataLoaded) {
@@ -22,20 +25,14 @@ const CheckboxPending: React.FC<CheckboxPendingProps> = ({ initialValue, id, act
 
     if (initialValue === isChecked) return;
 
-    if (timeout.current !== null) {
-      clearTimeout(timeout.current);
-    }
-
-    timeout.current = setTimeout(async () => {
-      console.log("timeout checkbox", actionType);
-      dispatch({
-        type: actionType,
-        payload: {
-          id,
-          pending: isChecked,
-        },
-      });
-    }, 500);
+    console.log("timeout checkbox", actionType);
+    dispatch({
+      type: actionType,
+      payload: {
+        id,
+        pending: isChecked,
+      },
+    });
   }, [dispatch, id, dataLoaded, initialValue, actionType, isChecked]);
 
   return (

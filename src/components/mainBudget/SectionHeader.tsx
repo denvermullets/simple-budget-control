@@ -48,7 +48,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ currentTab }) => {
           type: "ADD_CREDIT_CARD",
           payload: {
             id: generateId(),
-            source: "Chase",
+            source: "New Credit Card",
             balance: 0,
             minimumPayment: 0,
             limit: 0,
@@ -62,7 +62,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ currentTab }) => {
           type: "ADD_LOAN",
           payload: {
             id: generateId(),
-            source: "Bank of America",
+            source: "New Loan",
             balance: 0,
             minimumPayment: 0,
             remainingPayments: 0,

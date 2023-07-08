@@ -24,6 +24,7 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
     dueDate,
     remainingPayments,
     endDate,
+    pending,
   } = loan;
   const additionalProps = { id, actionType };
 
@@ -31,7 +32,11 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
     <Tr>
       <Td>
         <HStack spacing="3">
-          <CheckboxPending {...additionalProps} initialValue={loan.pending} />
+          <CheckboxPending
+            {...additionalProps}
+            initialValue={pending}
+            key={id.toString() + pending}
+          />
           <InputText initialValue={source} {...additionalProps} columnType="source" />
         </HStack>
       </Td>
@@ -51,10 +56,10 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
         />
       </Td>
       <Td>
-        <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="source" />
+        <InputText initialValue={dueDate.toString()} {...additionalProps} columnType="dueDate" />
       </Td>
       <Td>
-        <Text>{Math.round(originalAmount / balance) || 0}</Text>
+        <Text>{Math.round(balance / minimumPayment) || 0}</Text>
       </Td>
       {/* this is Actual Payments remaining (optional?) */}
       <Td>

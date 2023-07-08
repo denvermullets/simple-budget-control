@@ -3,6 +3,7 @@ import creditImage from "../../assets/stack.png";
 import { Link } from "react-router-dom";
 import SideBarTop from "./SideBarTop";
 import SideBarBottom from "./SideBarBottom";
+import PayPeriod from "../PayPeriod";
 
 type SideBarProps = {
   currentTab: number;
@@ -37,6 +38,8 @@ const SideBar: React.FC<SideBarProps> = ({ currentTab, setCurrentTab }) => {
       <SideBarTop />
       <Divider marginTop={2} />
       <SideBarBottom />
+      <Divider marginTop={2} />
+      <PayPeriod />
     </VStack>
   );
 };

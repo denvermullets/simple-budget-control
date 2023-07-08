@@ -7,6 +7,8 @@ type TableRecurringProps = {
 };
 
 const TableRecurring: React.FC<TableRecurringProps> = ({ data }) => {
+  const sortedData = data.sort((a, b) => a.dueDate - b.dueDate);
+
   return (
     <Box
       marginTop={4}
@@ -30,7 +32,7 @@ const TableRecurring: React.FC<TableRecurringProps> = ({ data }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((monthlyRecurring) => (
+          {sortedData.map((monthlyRecurring) => (
             <RecurringRow
               key={monthlyRecurring.id}
               monthlyRecurring={monthlyRecurring}

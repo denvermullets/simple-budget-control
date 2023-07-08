@@ -5,7 +5,13 @@ import {
   LocalStorage,
   MonthlyRecurring,
 } from "../models/localStorage.model";
-import { editCreditCards, editLoan, editRecurring, setLocalStorage } from "./budgetHelpers";
+import {
+  editCreditCards,
+  editLoan,
+  editRecurring,
+  setLocalStorage,
+  updateLocalStorage,
+} from "./budgetHelpers";
 
 type AddCredit = { type: "ADD_CREDIT_CARD"; payload: CreditCard };
 type ModifyCredit = { type: "EDIT_CREDIT_CARD"; payload: Partial<CreditCard> };
@@ -16,8 +22,9 @@ type ModifyRecurring = { type: "EDIT_RECURRING"; payload: Partial<MonthlyRecurri
 type DeleteCreditCard = { type: "DELETE_CREDIT_CARD"; payload: CreditCard };
 type DeleteLoan = { type: "DELETE_LOAN"; payload: Loan };
 type DeleteRecurring = { type: "DELETE_RECURRING"; payload: MonthlyRecurring };
-type UpdateBugetData = { type: "UPDATE_BUDGET_DATA"; payload: LocalStorage };
-type UpdateAmountFree = { type: "UPDATE_AMOUNT_FREE"; payload: AccountInfo };
+type UpdateAmountFree = { type: "UPDATE_AMOUNT_FREE"; payload: Pick<AccountInfo, "amountFree"> };
+type UpdateBugetData = { type: "UPDATE_BUDGET_DATA"; payload: PayPeriodDates };
+type UpdatePayPeriod = { type: "UPDATE_PAY_PERIOD"; payload: PayPeriodDates };
 
 export type NewActions = AddCredit | AddLoan | AddRecurring;
 
@@ -31,8 +38,11 @@ export type Actions =
   | AddRecurring
   | ModifyRecurring
   | DeleteRecurring
+  | UpdateAmountFree
   | UpdateBugetData
-  | UpdateAmountFree;
+  | UpdatePayPeriod;
+
+type PayPeriodDates = { startDate: Date; endDate: Date };
 
 export const simpleBudgetReducer = (state: LocalStorage, action: Actions) => {
   switch (action.type) {
@@ -104,10 +114,35 @@ export const simpleBudgetReducer = (state: LocalStorage, action: Actions) => {
         creditCards: state.creditCards.filter((credit) => credit.id !== action.payload.id),
       };
     case "UPDATE_AMOUNT_FREE":
-      setLocalStorage({ ...state, accountInfo: { ...action.payload } });
-      return { ...state, accountInfo: { ...action.payload } };
+      setLocalStorage({
+        ...state,
+        accountInfo: { ...state.accountInfo, amountFree: action.payload.amountFree },
+      });
+      return {
+        ...state,
+        accountInfo: { ...state.accountInfo, amountFree: action.payload.amountFree },
+      };
     case "UPDATE_BUDGET_DATA":
-      return state;
+      console.log("update budget data");
+      setLocalStorage(updateLocalStorage(action.payload.startDate, action.payload.endDate, state));
+      return updateLocalStorage(action.payload.startDate, action.payload.endDate, state);
+    case "UPDATE_PAY_PERIOD":
+      setLocalStorage({
+        ...state,
+        accountInfo: {
+          ...state.accountInfo,
+          payPeriodStart: action.payload.startDate,
+          payPeriodEnd: action.payload.endDate,
+        },
+      });
+      return {
+        ...state,
+        accountInfo: {
+          ...state.accountInfo,
+          payPeriodStart: action.payload.startDate,
+          payPeriodEnd: action.payload.endDate,
+        },
+      };
     default:
       return state;
   }
