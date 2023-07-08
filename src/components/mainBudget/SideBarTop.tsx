@@ -34,7 +34,7 @@ const SideBarTop: React.FC = () => {
     };
 
     setTotalPending(calculatePending());
-  }, [localBudgetData]);
+  }, [localBudgetData, localBudgetData.monthlyRecurring]);
 
   return (
     <>

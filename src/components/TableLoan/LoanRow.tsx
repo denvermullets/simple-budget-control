@@ -24,6 +24,7 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
     dueDate,
     remainingPayments,
     endDate,
+    pending,
   } = loan;
   const additionalProps = { id, actionType };
 
@@ -31,7 +32,11 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
     <Tr>
       <Td>
         <HStack spacing="3">
-          <CheckboxPending {...additionalProps} initialValue={loan.pending} />
+          <CheckboxPending
+            {...additionalProps}
+            initialValue={pending}
+            key={id.toString() + pending}
+          />
           <InputText initialValue={source} {...additionalProps} columnType="source" />
         </HStack>
       </Td>

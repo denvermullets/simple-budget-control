@@ -15,7 +15,7 @@ type CreditRowProps = {
 
 const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
   const { dispatch } = useContext<CurrentUserContext>(UserContext);
-  const { id, source, balance, limit, minimumPayment, dueDate } = creditCard;
+  const { id, source, balance, limit, minimumPayment, dueDate, pending } = creditCard;
   const additionalProps = { id, actionType };
 
   return (
@@ -23,7 +23,11 @@ const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
       <Td>
         <Flex minHeight="50px" align="center" minWidth="200px">
           <HStack spacing="3">
-            <CheckboxPending {...additionalProps} initialValue={creditCard.pending} />
+            <CheckboxPending
+              {...additionalProps}
+              initialValue={pending}
+              key={id.toString() + pending}
+            />
             <InputText initialValue={source} {...additionalProps} columnType="source" />
           </HStack>
         </Flex>

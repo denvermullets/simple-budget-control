@@ -43,12 +43,13 @@ export type Loan = {
 
 export type AccountInfo = {
   amountFree: number;
-  // pay period
+  payPeriodStart: Date;
+  payPeriodEnd: Date;
   // etc
 };
 
 export const INITIAL_STATE: LocalStorage = {
-  accountInfo: { amountFree: 0 },
+  accountInfo: { amountFree: 0, payPeriodStart: new Date(), payPeriodEnd: new Date() },
   monthlyRecurring: [{ id: 1, source: "Coffee", dueDate: 14, amount: 60.0, pending: true }],
   creditCards: [
     {
