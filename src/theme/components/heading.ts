@@ -1,7 +1,7 @@
 import { mode, StyleConfig, StyleFunctionProps } from "@chakra-ui/theme-tools";
 
 // don't forget to update colors to ones you have defined in your color theme
-export const simpleText: StyleConfig = {
+export const simpleHeading: StyleConfig = {
   baseStyle: (props: StyleFunctionProps) => ({
     color: mode("purpleMoment.800", "darkMode.200")(props),
   }),
@@ -9,7 +9,7 @@ export const simpleText: StyleConfig = {
   variants: {
     sidebar: () => ({
       color: "white",
-      fontSize: "14px",
+      size: "small",
     }),
   },
 };

@@ -69,6 +69,7 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
       value={format(value)}
       onBlur={() => setIsEditable(false)}
       autoFocus
+      textAlign="right"
       size="sm"
       width="auto"
     >

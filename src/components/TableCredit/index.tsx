@@ -19,7 +19,7 @@ const TableCredit: React.FC<TableCreditProps> = ({ data }) => {
     >
       <Table variant="simpleTable">
         <Thead>
-          <Tr>
+          <Tr backgroundColor="#242636">
             <Th textTransform="none">
               {/* <HStack spacing="3"> */}
               {/* <Checkbox /> */}
