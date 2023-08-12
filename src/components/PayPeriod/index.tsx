@@ -1,7 +1,7 @@
 import { DatePicker } from "../DatePickerCustom";
 import { useContext, useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { Button, Text, VStack } from "@chakra-ui/react";
+import { Button, HStack, Text, VStack } from "@chakra-ui/react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 
 const PayPeriod: React.FC = () => {
@@ -28,10 +28,17 @@ const PayPeriod: React.FC = () => {
 
   return (
     <VStack align="left" marginTop={2}>
-      <Text size="xs">Pay period start</Text>
-      <DatePicker value={startDate} onChange={(date) => setStartDate(date || startDate)} />
-      <Text size="xs">Pay period end</Text>
-      <DatePicker value={endDate} onChange={(date) => setEndDate(date || endDate)} />
+      <HStack>
+        <VStack align="left" marginRight={2}>
+          <Text fontSize="0.8rem">Pay period start</Text>
+          <DatePicker value={startDate} onChange={(date) => setStartDate(date || startDate)} />
+        </VStack>
+        <VStack align="left">
+          <Text fontSize="0.8rem">Pay period end</Text>
+          <DatePicker value={endDate} onChange={(date) => setEndDate(date || endDate)} />
+        </VStack>
+      </HStack>
+
       <Button
         variant="addNew"
         onClick={() =>

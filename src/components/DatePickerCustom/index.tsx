@@ -74,7 +74,7 @@ function useDatePickerStyles() {
           fontWeight: "400",
         },
         "&__day--selected, &__day--keyboard-selected": {
-          bg: "gray.700",
+          bg: "#2ed3b7",
           color: "white",
         },
       },
@@ -89,8 +89,9 @@ const CustomInput = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputEl
     return (
       <InputGroup width="100%">
         <Flex alignItems="center" justifyContent="space-between" width="100%">
-          <Input {...props} ref={ref} size="sm" rounded={10} />
+          <Input {...props} ref={ref} size="sm" rounded={10} variant="dateTime" />
           <InputRightElement
+            color="#2ed3b7"
             userSelect="none"
             pointerEvents="none"
             children={<CalendarIcon />}

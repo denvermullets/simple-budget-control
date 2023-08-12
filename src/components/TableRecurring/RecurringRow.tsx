@@ -20,7 +20,7 @@ const RecurringRow: React.FC<RecurringRowProps> = ({ monthlyRecurring, actionTyp
   return (
     <Tr>
       <Td>
-        <Flex minHeight="50px" align="center" minWidth="200px">
+        <Flex align="center" minWidth="200px">
           <HStack spacing="3">
             <CheckboxPending
               {...additionalProps}
@@ -32,7 +32,7 @@ const RecurringRow: React.FC<RecurringRowProps> = ({ monthlyRecurring, actionTyp
         </Flex>
       </Td>
       <Td>
-        <Flex minHeight="50px" align="center" minWidth="20px">
+        <Flex align="center" minWidth="20px">
           <InputCurrency
             initialValue={amount.toString()}
             columnType="amount"
