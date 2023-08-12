@@ -50,7 +50,9 @@ const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType, col
       autoFocus
     />
   ) : (
-    <Text onClick={() => setIsEditable(true)}>{value}</Text>
+    <Text onClick={() => setIsEditable(true)} style={{ cursor: "pointer" }}>
+      {value}
+    </Text>
   );
 };
 

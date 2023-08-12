@@ -75,7 +75,13 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
       <NumberInputField />
     </NumberInput>
   ) : (
-    <Text onClick={() => setIsEditable(true)}>{formatCurrency(value)}</Text>
+    <Text
+      onClick={() => setIsEditable(true)}
+      style={{ cursor: "pointer" }}
+      {...(columnType === "amountFree" && { color: "#2ed3b7" })}
+    >
+      {formatCurrency(value)}
+    </Text>
   );
 };
 
