@@ -32,8 +32,7 @@ const Balance: React.FC<BalanceProps> = ({ limit, balance, id, actionType, colum
         value={(balance / limit) * 100}
         size="xs"
         borderRadius={2}
-        bg="grey"
-        color="white"
+        variant="simpleDefault"
       />
     </Box>
   );

@@ -9,7 +9,7 @@ const NavBar: React.FC = () => {
       borderStyle="solid"
       alignItems={{ xl: "center" }}
       display="flex"
-      minH="75px"
+      minH="50px"
       paddingBottom="8px"
       paddingX={{
         sm: "15px",
@@ -28,19 +28,19 @@ const NavBar: React.FC = () => {
         mb="0px"
       >
         <Box marginBottom={{ sm: "8px", md: "0px" }} marginRight={8}>
-          <Text>Overview</Text>
+          <Text variant="sidebar">Overview</Text>
         </Box>
         <Box marginBottom={{ sm: "8px", md: "0px" }} marginRight={8}>
-          <Text>Recurring Charges</Text>
+          <Text variant="sidebar">Recurring Charges</Text>
         </Box>
         <Box marginBottom={{ sm: "8px", md: "0px" }} marginRight={8}>
-          <Text>Credit Cards</Text>
+          <Text variant="sidebar">Credit Cards</Text>
         </Box>
         <Box marginBottom={{ sm: "8px", md: "0px" }} marginRight={8}>
-          <Text>Loans</Text>
+          <Text variant="sidebar">Loans</Text>
         </Box>
         <Box ms="auto" w={{ sm: "100%", md: "unset" }}>
-          Some other info
+          <Text variant="sidebar">Login</Text>
         </Box>
       </Flex>
     </Box>

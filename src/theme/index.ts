@@ -3,6 +3,10 @@ import { globalStyles } from "./styles";
 import { simpleText } from "./components/text";
 import { simpleTable } from "./components/table";
 import { simpleHeading } from "./components/heading";
+import { simpleTabs } from "./components/tabs";
+import { simpleButton } from "./components/button";
+import { simpleCheckBox } from "./components/checkbox";
+import { simpleProgress } from "./components/progress";
 
 const customTheme = extendTheme({
   fonts: {
@@ -10,13 +14,13 @@ const customTheme = extendTheme({
     body: `Inter, ${base.fonts?.body}`,
   },
   components: {
+    Button: { ...simpleButton },
+    Checkbox: { ...simpleCheckBox },
     Heading: { ...simpleHeading },
-    Text: {
-      ...simpleText,
-    },
-    Table: {
-      ...simpleTable,
-    },
+    Progress: { ...simpleProgress },
+    Table: { ...simpleTable },
+    Tabs: { ...simpleTabs },
+    Text: { ...simpleText },
   },
   ...globalStyles,
 });

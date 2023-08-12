@@ -1,10 +1,10 @@
 import { StyleConfig } from "@chakra-ui/theme-tools";
 
-export const simpleHeading: StyleConfig = {
+export const simpleButton: StyleConfig = {
   variants: {
-    sidebar: () => ({
+    addNew: () => ({
       color: "white",
-      fontSize: "1.5rem",
+      backgroundColor: "#2ed3b7",
     }),
   },
 };

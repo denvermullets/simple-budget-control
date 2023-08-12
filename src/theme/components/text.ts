@@ -9,7 +9,7 @@ export const simpleText: StyleConfig = {
   variants: {
     sidebar: () => ({
       color: "white",
-      fontSize: "14px",
+      fontSize: "1rem",
     }),
   },
 };

@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 import { UserContext } from "./providers/UserContext";
 import MainBudget from "./components/mainBudget";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Box minH="100vh">
-        <NavBar />
+        {/* <NavBar /> */}
         <Routes>
           <Route path="/about" element={<div style={{ color: "white" }}>HI HI</div>} />
           <Route path="/monthly-recurring" element={<MainBudget initialTab={1} />} />

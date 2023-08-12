@@ -92,15 +92,15 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ currentTab }) => {
   return (
     <Flex justify="space-between" align="center">
       <VStack color="white" align="left">
-        <Heading as="h3" size="md">
+        <Heading as="h3" variant="sidebar">
           {headerData[currentTab].heading}
         </Heading>
-        <Text color="gray" fontSize="14px">
-          {headerData[currentTab].subHeading}
-        </Text>
+        <Text variant="sidebar">{headerData[currentTab].subHeading}</Text>
       </VStack>
       {currentTab !== 0 && (
-        <Button onClick={() => dispatch(generateAction(currentTab))}>+ Add</Button>
+        <Button variant="addNew" onClick={() => dispatch(generateAction(currentTab))}>
+          + Add
+        </Button>
       )}
     </Flex>
   );
