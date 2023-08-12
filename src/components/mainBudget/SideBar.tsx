@@ -10,27 +10,29 @@ type SideBarProps = {
   setCurrentTab: (currentTab: number) => void;
 };
 
+// active color: color="#2ed3b7"
+
 const SideBar: React.FC<SideBarProps> = ({ currentTab, setCurrentTab }) => {
   return (
     <VStack color="white" align="left" marginBottom={20} marginLeft={4}>
-      <Heading as="h3" size="lg">
+      <Heading as="h1" variant="sidebar">
         Simple Budget Control
       </Heading>
-      <Text>Manage your monthly spending.</Text>
+      <Text variant="sidebar">Manage your monthly spending.</Text>
       <Divider marginTop={2} />
       <Image src={creditImage} objectFit="cover" alt="Devin Booker's Credit Cards" marginTop={4} />
-      <Tabs index={currentTab} onChange={(index) => setCurrentTab(index)} size="sm" marginTop={12}>
+      <Tabs index={currentTab} onChange={(index) => setCurrentTab(index)} size="sm" marginTop={2}>
         <TabList>
-          <Tab fontSize="14">
+          <Tab fontSize="0.8rem">
             <Link to="/">Overview</Link>
           </Tab>
-          <Tab fontSize="14">
+          <Tab fontSize="0.8rem">
             <Link to="/monthly-recurring">Recurring</Link>
           </Tab>
-          <Tab fontSize="14">
+          <Tab fontSize="0.8rem">
             <Link to="/credit-cards">Credit Cards</Link>
           </Tab>
-          <Tab fontSize="14">
+          <Tab fontSize="0.8rem">
             <Link to="/loans">Loans</Link>
           </Tab>
         </TabList>

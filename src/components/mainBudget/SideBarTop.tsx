@@ -39,8 +39,8 @@ const SideBarTop: React.FC = () => {
   return (
     <>
       <Flex justify="space-between" align="center" marginTop={2}>
-        <Text size="xs">Current amount free</Text>
-        <Heading as="h3" size="md">
+        <Text variant="sidebar">Current amount free</Text>
+        <Heading as="h3" size="sm">
           <InputCurrency
             id={0}
             initialValue={localBudgetData.accountInfo.amountFree.toString()}
@@ -49,15 +49,15 @@ const SideBarTop: React.FC = () => {
           />
         </Heading>
       </Flex>
-      <Flex justify="space-between" align="center" marginTop={2}>
-        <Text size="xs">Charges pending</Text>
-        <Heading as="h3" size="md">
+      <Flex justify="space-between" align="center">
+        <Text variant="sidebar">Charges pending</Text>
+        <Heading as="h3" size="sm">
           {formatCurrency(totalPending.toString())}
         </Heading>
       </Flex>
-      <Flex justify="space-between" align="center" marginTop={2}>
-        <Text size="xs">Amount remaining</Text>
-        <Heading as="h3" size="md">
+      <Flex justify="space-between" align="center">
+        <Text variant="sidebar">Amount remaining</Text>
+        <Heading as="h3" size="sm">
           {formatCurrency((localBudgetData.accountInfo.amountFree - totalPending).toString())}
         </Heading>
       </Flex>

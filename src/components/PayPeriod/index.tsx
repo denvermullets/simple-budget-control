@@ -33,6 +33,7 @@ const PayPeriod: React.FC = () => {
       <Text size="xs">Pay period end</Text>
       <DatePicker value={endDate} onChange={(date) => setEndDate(date || endDate)} />
       <Button
+        variant="addNew"
         onClick={() =>
           dispatch({
             type: "UPDATE_BUDGET_DATA",

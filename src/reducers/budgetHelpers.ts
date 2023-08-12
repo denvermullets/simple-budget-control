@@ -56,6 +56,10 @@ export const formatCurrency = (amount: string) =>
     currency: "USD",
   });
 
+export const convertCurrency = new Intl.NumberFormat("en-US", {
+  currency: "USD",
+});
+
 export const parseMoney = (val: string) => val.replace(/^\$/, "");
 
 export const updateLocalStorage = (startDate: Date, endDate: Date, data: LocalStorage) => {

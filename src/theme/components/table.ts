@@ -11,7 +11,7 @@ export const simpleTable: StyleConfig = {
       },
       th: {
         color: "grey",
-        fontSize: 12,
+        fontSize: "0.75rem",
         backgroundColor: "#242636",
         fontWeight: "normal",
       },
