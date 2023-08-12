@@ -7,6 +7,7 @@ import { simpleTabs } from "./components/tabs";
 import { simpleButton } from "./components/button";
 import { simpleCheckBox } from "./components/checkbox";
 import { simpleProgress } from "./components/progress";
+import { simpleInput } from "./components/input";
 
 const customTheme = extendTheme({
   fonts: {
@@ -17,6 +18,7 @@ const customTheme = extendTheme({
     Button: { ...simpleButton },
     Checkbox: { ...simpleCheckBox },
     Heading: { ...simpleHeading },
+    Input: { ...simpleInput },
     Progress: { ...simpleProgress },
     Table: { ...simpleTable },
     Tabs: { ...simpleTabs },

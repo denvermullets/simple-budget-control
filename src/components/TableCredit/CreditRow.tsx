@@ -21,7 +21,7 @@ const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
   return (
     <Tr>
       <Td>
-        <Flex minHeight="50px" align="center" minWidth="200px">
+        <Flex align="center" minWidth="200px">
           <HStack spacing="3">
             <CheckboxPending
               {...additionalProps}
@@ -33,12 +33,12 @@ const CreditRow: React.FC<CreditRowProps> = ({ creditCard, actionType }) => {
         </Flex>
       </Td>
       <Td>
-        <Flex minHeight="50px" align="center" minWidth="200px">
+        <Flex align="center" minWidth="200px">
           <Balance balance={balance} limit={limit} {...additionalProps} columnType="limit" />
         </Flex>
       </Td>
       <Td>
-        <Flex minHeight="50px" align="center" minWidth="20px">
+        <Flex align="center" minWidth="20px">
           <InputCurrency
             initialValue={minimumPayment.toString()}
             columnType="minimumPayment"
