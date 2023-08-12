@@ -25,7 +25,6 @@ const CheckboxPending: React.FC<CheckboxPendingProps> = ({ initialValue, id, act
 
     if (initialValue === isChecked) return;
 
-    console.log("timeout checkbox", actionType);
     dispatch({
       type: actionType,
       payload: {
