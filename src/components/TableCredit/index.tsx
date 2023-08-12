@@ -60,6 +60,7 @@ const TableCredit: React.FC<TableCreditProps> = ({ data }) => {
         <Thead>
           <Tr>
             <Th
+              style={{ cursor: "pointer" }}
               textTransform="none"
               onClick={() => {
                 setSortType("source");
@@ -74,6 +75,7 @@ const TableCredit: React.FC<TableCreditProps> = ({ data }) => {
               </HStack>
             </Th>
             <Th
+              style={{ cursor: "pointer" }}
               textTransform="none"
               onClick={() => {
                 setSortType("balance");
@@ -88,6 +90,7 @@ const TableCredit: React.FC<TableCreditProps> = ({ data }) => {
               </HStack>
             </Th>
             <Th
+              style={{ cursor: "pointer" }}
               textTransform="none"
               maxWidth="10px"
               onClick={() => {
@@ -103,6 +106,7 @@ const TableCredit: React.FC<TableCreditProps> = ({ data }) => {
               </HStack>
             </Th>
             <Th
+              style={{ cursor: "pointer" }}
               textTransform="none"
               onClick={() => {
                 setSortType("dueDate");

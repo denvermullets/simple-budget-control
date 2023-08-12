@@ -19,7 +19,6 @@ const PayPeriod: React.FC = () => {
   }, [startDate]);
 
   useEffect(() => {
-    console.log("pay period updated");
     dispatch({
       type: "UPDATE_PAY_PERIOD",
       payload: { startDate, endDate },

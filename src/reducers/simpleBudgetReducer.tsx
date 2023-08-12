@@ -123,7 +123,6 @@ export const simpleBudgetReducer = (state: LocalStorage, action: Actions) => {
         accountInfo: { ...state.accountInfo, amountFree: action.payload.amountFree },
       };
     case "UPDATE_BUDGET_DATA":
-      console.log("update budget data");
       setLocalStorage(updateLocalStorage(action.payload.startDate, action.payload.endDate, state));
       return updateLocalStorage(action.payload.startDate, action.payload.endDate, state);
     case "UPDATE_PAY_PERIOD":

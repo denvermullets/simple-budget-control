@@ -28,7 +28,6 @@ const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType, col
     }
 
     timeout.current = setTimeout(async () => {
-      console.log("timeout", actionType);
       dispatch({
         type: actionType,
         payload: {
@@ -40,6 +39,8 @@ const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType, col
     }, 1000);
   }, [dispatch, id, dataLoaded, value, initialValue, actionType, columnType]);
 
+  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => event.target.select();
+
   return isEditable ? (
     <Input
       width="100%"
@@ -48,6 +49,9 @@ const InputText: React.FC<InputTextProps> = ({ initialValue, id, actionType, col
       value={value}
       onBlur={() => setIsEditable(false)}
       autoFocus
+      variant="sourceInput"
+      onFocus={handleFocus}
+      rounded={10}
     />
   ) : (
     <Text onClick={() => setIsEditable(true)} style={{ cursor: "pointer" }}>
