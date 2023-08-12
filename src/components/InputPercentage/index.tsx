@@ -36,7 +36,6 @@ const InputPercentage: React.FC<InputPercentageProps> = ({
     }
 
     timeout.current = setTimeout(async () => {
-      console.log("timeout", actionType);
       dispatch({
         type: actionType,
         payload: {
@@ -53,6 +52,7 @@ const InputPercentage: React.FC<InputPercentageProps> = ({
       value={format(value)}
       onBlur={() => setIsEditable(false)}
       autoFocus
+      variant="simpleNumberInput"
     >
       <NumberInputField />
     </NumberInput>

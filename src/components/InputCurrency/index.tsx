@@ -26,6 +26,7 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
   actionType,
 }) => {
   const timeout = useRef<null | ReturnType<typeof setTimeout>>();
+  const numberInputRef = useRef<HTMLInputElement>(null);
   const { dispatch } = useContext<CurrentUserContext>(UserContext);
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
   const [isEditable, setIsEditable] = useState<boolean>(false);
@@ -43,7 +44,6 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
     }
 
     timeout.current = setTimeout(async () => {
-      console.log("timeout", actionType);
       if (actionType === "UPDATE_AMOUNT_FREE") {
         dispatch({
           type: "UPDATE_AMOUNT_FREE",
@@ -63,6 +63,15 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
     }, 1000);
   }, [dispatch, id, dataLoaded, value, initialValue, columnType, actionType]);
 
+  useEffect(() => {
+    // for some reason putting this in a different component fixed all of the autofocus issues??
+    if (isEditable && numberInputRef.current) {
+      numberInputRef.current.focus();
+    }
+  }, [isEditable]);
+
+  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => event.target.select();
+
   return isEditable ? (
     <NumberInput
       onChange={(valueNumber: string) => setValue(parseMoney(valueNumber))}
@@ -71,11 +80,19 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
       autoFocus
       size="sm"
       width="auto"
+      variant="numberInput"
+      onFocus={handleFocus}
     >
-      <NumberInputField />
+      <NumberInputField ref={numberInputRef} width={125} rounded={10} />
     </NumberInput>
   ) : (
-    <Text onClick={() => setIsEditable(true)}>{formatCurrency(value)}</Text>
+    <Text
+      onClick={() => setIsEditable(true)}
+      style={{ cursor: "pointer" }}
+      {...(columnType === "amountFree" && { color: "#2ed3b7" })}
+    >
+      {formatCurrency(value)}
+    </Text>
   );
 };
 

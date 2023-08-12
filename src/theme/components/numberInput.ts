@@ -1,6 +1,6 @@
 import { StyleConfig } from "@chakra-ui/theme-tools";
 
-export const simpleInput: StyleConfig = {
+export const simpleNumberInput: StyleConfig = {
   baseStyle: {
     field: {
       border: "1px solid",
@@ -9,16 +9,7 @@ export const simpleInput: StyleConfig = {
   },
 
   variants: {
-    dateTime: () => ({
-      field: {
-        backgroundColor: "#1e1e2c",
-        borderColor: "#2ed3b7",
-        _focus: {
-          borderColor: "#2ed3b7",
-        },
-      },
-    }),
-    sourceInput: () => ({
+    numberInput: () => ({
       field: {
         backgroundColor: "#1e1e2c",
         borderColor: "#2ed3b7",
