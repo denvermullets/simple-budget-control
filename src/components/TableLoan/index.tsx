@@ -36,7 +36,7 @@ const TableLoan: React.FC<TableLoanProps> = ({ data }) => {
             <Th textTransform="none">End Date</Th>
             {/* optional Interest? */}
             {/* <Th>Interest</Th> */}
-            <Th textTransform="none">del</Th>
+            <Th textTransform="none"></Th>
           </Tr>
         </Thead>
         <Tbody>
