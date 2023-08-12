@@ -6,6 +6,9 @@ Currently, this is like MVP v0.1. It only uses localStorage for retaining inform
 
 ## Screenshots
 
+![simple-budget-control screenshot](https://github.com/denvermullets/simple-budget-control/assets/47340962/f6229cfa-8946-4dc1-a774-96f424025de3)
+
+
 ## Stack
 
 Currently, it's just a Typescript React (v18) app using Vite, Chakra UI, and customTheme setup.
