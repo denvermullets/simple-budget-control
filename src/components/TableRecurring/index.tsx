@@ -35,6 +35,9 @@ const TableRecurring: React.FC<TableRecurringProps> = ({ data }) => {
         );
         break;
       default:
+        setSortedData(
+          [...data].sort((a, b) => (sortAscending ? a.dueDate - b.dueDate : b.dueDate - a.dueDate))
+        );
         break;
     }
   }, [sortType, sortAscending, data]);
