@@ -44,6 +44,9 @@ const TableLoan: React.FC<TableLoanProps> = ({ data }) => {
         );
         break;
       default:
+        setSortedData(
+          [...data].sort((a, b) => (sortAscending ? a.dueDate - b.dueDate : b.dueDate - a.dueDate))
+        );
         break;
     }
   }, [sortType, sortAscending, data]);
