@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 import { generateId } from "../../models/localStorage.model";
 import { NewActions } from "../../reducers/simpleBudgetReducer";
+import { trackEvent } from "../../analytics/vektis";
 
 type SectionHeaderProps = {
   currentTab: number;
@@ -98,7 +99,14 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ currentTab }) => {
         <Text variant="sidebar">{headerData[currentTab].subHeading}</Text>
       </VStack>
       {currentTab !== 0 && (
-        <Button variant="addNew" onClick={() => dispatch(generateAction(currentTab))}>
+        <Button
+          variant="addNew"
+          onClick={() => {
+            const action = generateAction(currentTab);
+            dispatch(action);
+            trackEvent("budget-item", "added", { item_type: action.type });
+          }}
+        >
           + Add
         </Button>
       )}

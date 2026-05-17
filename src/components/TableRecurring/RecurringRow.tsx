@@ -6,6 +6,7 @@ import CheckboxPending from "../CheckboxPending";
 import { useContext } from "react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 import { FiTrash2 } from "react-icons/fi";
+import { trackEvent } from "../../analytics/vektis";
 
 type RecurringRowProps = {
   monthlyRecurring: MonthlyRecurring;
@@ -48,12 +49,13 @@ const RecurringRow: React.FC<RecurringRowProps> = ({ monthlyRecurring, actionTyp
           icon={<FiTrash2 />}
           variant="tertiary"
           aria-label="Delete credit card"
-          onClick={() =>
+          onClick={() => {
             dispatch({
               type: "DELETE_RECURRING",
               payload: monthlyRecurring,
-            })
-          }
+            });
+            trackEvent("budget-item", "deleted", { item_type: "RECURRING" });
+          }}
         />
       </Td>
     </Tr>

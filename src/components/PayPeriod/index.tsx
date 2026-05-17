@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { Button, HStack, Text, VStack } from "@chakra-ui/react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
+import { trackEvent } from "../../analytics/vektis";
 
 const PayPeriod: React.FC = () => {
   const { localBudgetData, dispatch } = useContext<CurrentUserContext>(UserContext);
@@ -40,12 +41,13 @@ const PayPeriod: React.FC = () => {
 
       <Button
         variant="addNew"
-        onClick={() =>
+        onClick={() => {
           dispatch({
             type: "UPDATE_BUDGET_DATA",
             payload: { startDate, endDate },
-          })
-        }
+          });
+          trackEvent("pay-period", "reset");
+        }}
         marginTop={4}
       >
         Reset to current pay period

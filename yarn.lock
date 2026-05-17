@@ -1525,6 +1525,11 @@
     "@typescript-eslint/types" "5.60.0"
     eslint-visitor-keys "^3.3.0"
 
+"@vektis-io/tracker@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@vektis-io/tracker/-/tracker-1.2.0.tgz#26bb3374fad13c086d3c0a102b2e6c5ec59ccfed"
+  integrity sha512-j6yiNoM3O0N8/eXqmE9q8vUm/VEOi/0DVSTWKEwfpOn4Io6KP4ILJwSHs482xz3wrDegKKKSxsI9xzMoMXns5Q==
+
 "@vitejs/plugin-react@^4.0.0":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-4.0.1.tgz#793aa790633433558da7ac0a38c58ddf47dff518"

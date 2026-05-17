@@ -1,11 +1,14 @@
 import { Box, Divider, Grid, VStack } from "@chakra-ui/react";
 import SideBar from "./SideBar";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 import TableCredit from "../TableCredit";
 import SectionHeader from "./SectionHeader";
 import TableLoan from "../TableLoan";
 import TableRecurring from "../TableRecurring";
+import { trackEvent } from "../../analytics/vektis";
+
+const TAB_NAMES = ["overview", "monthly-recurring", "credit-cards", "loans"] as const;
 
 type MainBudgetProps = {
   initialTab: number;
@@ -14,10 +17,21 @@ type MainBudgetProps = {
 const MainBudget: React.FC<MainBudgetProps> = ({ initialTab }) => {
   const { localBudgetData } = useContext<CurrentUserContext>(UserContext);
   const [currentTab, setCurrentTab] = useState<number>(initialTab || 0);
+  const firstTabRender = useRef(true);
 
   useEffect(() => {
     setCurrentTab(initialTab);
   }, [initialTab]);
+
+  useEffect(() => {
+    if (firstTabRender.current) {
+      firstTabRender.current = false;
+      return;
+    }
+    trackEvent("tab-navigation", "viewed", {
+      tab: TAB_NAMES[currentTab] ?? String(currentTab),
+    });
+  }, [currentTab]);
 
   const renderComponent = (tab: number) => {
     switch (tab) {

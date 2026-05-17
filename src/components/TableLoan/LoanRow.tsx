@@ -7,6 +7,7 @@ import CheckboxPending from "../CheckboxPending";
 import { useContext } from "react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 import { FiTrash2 } from "react-icons/fi";
+import { trackEvent } from "../../analytics/vektis";
 
 type LoanRowProps = {
   loan: Loan;
@@ -77,12 +78,13 @@ const LoanRow: React.FC<LoanRowProps> = ({ loan, actionType }) => {
           icon={<FiTrash2 />}
           variant="tertiary"
           aria-label="Delete credit card"
-          onClick={() =>
+          onClick={() => {
             dispatch({
               type: "DELETE_LOAN",
               payload: loan,
-            })
-          }
+            });
+            trackEvent("budget-item", "deleted", { item_type: "LOAN" });
+          }}
         />
       </Td>
     </Tr>
